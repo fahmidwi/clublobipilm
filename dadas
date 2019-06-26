@@ -1,22 +1,0 @@
-[1mdiff --git a/application/controllers/Home.php b/application/controllers/Home.php[m
-[1mindex 9a79736..9661177 100755[m
-[1m--- a/application/controllers/Home.php[m
-[1m+++ b/application/controllers/Home.php[m
-[36m@@ -63,7 +63,7 @@[m [mclass Home extends CI_Controller {[m
- [m
- 		$nextpage = $startpage + 3;[m
- 		$prevpage = $startpage - 3;[m
-[31m-		[m
-[32m+[m		[32masdasda[m[41m[m
- 		if($prevpage >= 0){[m
- 			$data['prev'] = "<li class='page-item'><a class='page-link' href='".base_url('Home/berita/'.$prevpage)."'>&laquo; Berita sebelumnya </a></li>";[m
- 		}else{[m
-[36m@@ -71,7 +71,7 @@[m [mclass Home extends CI_Controller {[m
- 		}[m
- [m
- 		if ($nextpage > $totaldata) {[m
-[31m-			$data['next'] = "";[m
-[32m+[m			[32m$data['next'] = ""[m[41m[m
- 		}else{[m
- 			$data['next'] = "<li class='page-item'><a class='page-link' href='".base_url('Home/berita/'.$nextpage)."'>Berita Selanjutnya &raquo;</a></li>";[m
- 		}[m
