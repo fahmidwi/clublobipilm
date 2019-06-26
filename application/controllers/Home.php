@@ -173,7 +173,7 @@ class Home extends CI_Controller {
 
 				$this->mclp->inputdata('tb_registrasi',$data);
 				$this->session->set_flashdata('pesan','registrasi anda telah berhasil pihak kami akan segera mengonfirmasi pastikan no hp anda aktiv');
-				redirect(base_url('home/pendaftaran'),'refresh');
+				redirect(base_url('home/success'),'refresh');
 			}else{
 				echo json_encode(array('msg' => 'gagal upload'));
 				die();
@@ -184,5 +184,10 @@ class Home extends CI_Controller {
 			echo "<pre>";
 		}	
 		
+	}
+
+	public function success()
+	{
+		$this->load->view('terimakasih.php');
 	}
 }
