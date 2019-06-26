@@ -137,7 +137,7 @@ class Home extends CI_Controller {
 
 	public function test()
 	{
-
+		$nama = "fahmi dwi s";
 	}
 
 	public function ya($ya)
