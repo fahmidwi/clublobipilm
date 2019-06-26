@@ -129,6 +129,10 @@ class Home extends CI_Controller {
 	public function pedaftaran()
 	{
 		$nama = "fahmi dwi s";
+		$nama = "fahmi dwi s";
+		$nama = "fahmi dwi s";
+		$nama = "fahmi dwi s";
+		$nama = "fahmi dwi s";
 	}
 
 	public function test()
