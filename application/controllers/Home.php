@@ -128,7 +128,7 @@ class Home extends CI_Controller {
 
 	public function pedaftaran()
 	{
-
+		$nama = $this->input->post('nama');
 	}
 
 	public function test()
