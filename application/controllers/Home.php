@@ -18,10 +18,7 @@ class Home extends CI_Controller {
 		$data['karya'] = $this->mclp->getAllKarya(null,null)->result();
 		$this->load->view('index',$data);
 	}
-	public function pendaftaran()
-	{
-		$this->load->view('pendaftaran');
-	}
+	
 	public function infoProker($id,$uri)
 	{
 		$judul = str_replace('-',' ',$uri);
@@ -126,12 +123,26 @@ class Home extends CI_Controller {
 		}
 	}
 
-	public function pedaftaran()
+	public function pendaftaran()
 	{
-		$nama = "fahmi dwi s";
-		$nama = "fahmi dwi s";
-		$nama = "fahmi dwi s";
-		$nama = "fahmi dwi s";
-		$nama = "fahmi dwi s";
+		$this->load->view('pendaftaran');
+	}
+
+	public function prosesPedaftaran()
+	{
+		$file_poster = $_FILES['file_poster']['name'];
+		print_r($file_poster);die();
+
+		$data = array(
+			'nama_pewakilan' => $this->input->post('nama_pewakilan'),
+			'no_tlp' => $this->input->post('no_tlp'),
+			'email' => $this->input->post('email'),
+			'asal_sekolah' => $this->input->post('asal_sekolah'),
+			'judul_film' => $this->input->post('judul_film'),
+			'sinopsis' => $this->input->post('editor1'),
+			'cast' => $this->input->post('editor2'),
+			'file_poster' => $this->input->post('file_poster'),
+			'link_film' => $this->input->post('link_film')
+		);
 	}
 }
