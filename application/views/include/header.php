@@ -1,8 +1,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Website Club Lobi Pilm @2019">
+  <meta name="author" content="fahmidwisyahputra(@dwifhmi), MochFahmi(@fahmidion_)">
   <link rel="icon" type="image/png" href="<?php echo base_url('assets/frontend/img/logoclp.png') ?>">
   <title>CLP - Clublobipilm</title>
 
@@ -19,12 +19,7 @@
   <link href="<?php echo base_url('lib/frontend/css/css/animate.css');?>" rel="stylesheet" />
   <link href="<?php echo base_url('lib/frontend/css/css/style.css');?>" rel="stylesheet">
   <link href="<?php echo base_url('lib/frontend/css/color/default.css');?>" rel="stylesheet">
-  <!-- =======================================================
-    Theme Name: Shuffle
-    Theme URL: https://bootstrapmade.com/bootstrap-3-one-page-template-free-shuffle/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 

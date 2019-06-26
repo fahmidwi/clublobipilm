@@ -89,8 +89,9 @@
         <img src="<?php echo base_url('assets/frontend/img/clp.jpg') ?>" alt="" class="img-responsive"/>
         </div>
         <div class="col-md-6">
-          <p style="text-align: justify;">Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.Graeco voluptua sed ea, malorum quaeque cotidieque per eu, quo id possit dissentias.
-          <br><a href="<?php echo base_url('home/tentangKami') ?>" ><i>Lihat selengkapnya</i></a>
+          <p style="text-align: justify;">
+            <?php echo substr($sejarah->isi,0,1000).'...';?>
+            <br><a href="<?php echo base_url('home/tentangKami') ?>" ><i>Lihat selengkapnya</i></a>
           </p>
         </div>
       </div>

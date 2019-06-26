@@ -65,7 +65,7 @@
                   <?php } ?>
                   <!-- <i class="mdi mdi-eye" style="margin-top:-2%;z-index:5;position:absolute;margin:2% 10% 2% 2% ;right:0;color:white;">25</i> -->
                   <img src="<?php echo base_url('assets/frontend/img/poster_karya/'.$res->poster) ?>" alt="..." style="width:351px;height:338px;z-index: 1; -webkit-filter:brightness(50%);">
-                  <div style="z-index:5;margin-top:<?php echo (strlen($res->judul_film) > 15 ? '-24%': '-17%') ?>;position:absolute;padding:5%;">
+                  <div style="z-index:5;margin-top:<?php echo (strlen($res->judul_film) > 20 ? '-24%': '-17%') ?>;position:absolute;padding:5%;">
                     <h6 style="font-weight: bold;color:white;"><?php echo (strlen($res->judul_film) > 25 ? substr($res->judul_film,0,25).' ...' : $res->judul_film); ?>&nbsp;</h6>
                   </div>
                   <div class="caption" >            
@@ -74,8 +74,7 @@
                     <p><a href="<?php echo $res->link_film ?>" class="btn btn-success" target="_blank">Lihat sekarang</a>
                     <?php 
                       $judul = strtolower($res->judul_film);
-                      $text = preg_replace('/[^A-Za-z0-9\  ]/', '', $judul);
-                      $uri = str_replace(" ","-",$text);
+                      $uri = str_replace(" ","-",$judul);
                     ?>
                     <a href="<?php echo base_url('home/dk/'.$res->id_karya.'/'.$uri) ?>" class="btn btn-info" role="button">Detail</a></p>
                   </div>

@@ -16,6 +16,7 @@ class Home extends CI_Controller {
 		$data['berita'] = $this->mclp->getBeritaAtHome();
 		$data['favberita'] = $this->mclp->getBeritaFavorite()->result();
 		$data['karya'] = $this->mclp->getAllKarya(null,null)->result();
+		$data['sejarah'] = $this->db->like('tb_artikel_statis.title','Sejarah Club Lobi Pilm')->get('tb_artikel_statis')->row();
 		$this->load->view('index',$data);
 	}
 	
@@ -49,7 +50,10 @@ class Home extends CI_Controller {
 	}
 	public function tentangKami()
 	{
-		$this->load->view('tentangkami');
+		$data['sejarah'] = $this->db->like('tb_artikel_statis.title','Sejarah Club Lobi Pilm')->get('tb_artikel_statis')->row();
+		$data['statis'] = $this->mclp->getData('tb_artikel_statis','id_artikel_statis')
+									->result();
+		$this->load->view('tentangkami',$data);
 	}
 	public function berita($startpage)
 	{
@@ -125,24 +129,60 @@ class Home extends CI_Controller {
 
 	public function pendaftaran()
 	{
-		$this->load->view('pendaftaran');
+		$data['genre'] = $this->mclp->getData('tb_genre','id_genre')->result();
+		$data['terdaftar'] = $this->mclp->getData('tb_registrasi','id_registrasi')->result();
+		$this->load->view('pendaftaran',$data);
 	}
 
 	public function prosesPedaftaran()
 	{
-		$file_poster = $_FILES['file_poster']['name'];
-		print_r($file_poster);die();
+		$file 			= $_FILES['file_poster']['name'];
+		$pisah 			= explode(".",$file);
+		$ext 			= end($pisah);
+		$rename 		= date("YmdHis");
+		$nama_file 		= $rename.".".$ext;
 
-		$data = array(
-			'nama_pewakilan' => $this->input->post('nama_pewakilan'),
-			'no_tlp' => $this->input->post('no_tlp'),
-			'email' => $this->input->post('email'),
-			'asal_sekolah' => $this->input->post('asal_sekolah'),
-			'judul_film' => $this->input->post('judul_film'),
-			'sinopsis' => $this->input->post('editor1'),
-			'cast' => $this->input->post('editor2'),
-			'file_poster' => $this->input->post('file_poster'),
-			'link_film' => $this->input->post('link_film')
-		);
+		$config['upload_path']	 = './assets/backend/img/poster_regis';
+		$config['allowed_types'] = 'jpg|jpeg|png|gif';
+		$config['file_name']  	 = 'REGIS_'.$nama_file;
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+
+		$scret_key = '6LcjjKoUAAAAAOLRGjUH3tksCAsByqha7YapUV5m';
+		$recaptchaResponse = $this->input->post('g-recaptcha-response');
+		$verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$scret_key.'&response='.$recaptchaResponse);
+		$response = json_decode($verify);
+	
+		if ($response->success) {
+			if($this->upload->do_upload('file_poster')){
+				$data = array(
+					'nama_perwakilan' => $this->input->post('nama_pewakilan'),
+					'asal_sekolah' => $this->input->post('asal_sekolah'),
+					'email' => $this->input->post('email'),
+					'judul_film' => $this->input->post('judul_film'),
+					'durasi' => $this->input->post('durasi'),
+					'sinopsis' => $this->input->post('editor1'),
+					'crew' => $this->input->post('editor2'),
+					'poster' => $config['file_name'],
+					'link_film' => $this->input->post('link_film'),
+					'id_genre' => $this->input->post('genre'),
+					'tanggal_registrasi' => date('Y-m-d H:i:s'),
+					'no_tlp' => $this->input->post('no_tlp'),
+				);
+
+				$this->mclp->inputdata('tb_registrasi',$data);
+				$this->session->set_flashdata('pesan','registrasi anda telah berhasil pihak kami akan segera mengonfirmasi pastikan no hp anda aktiv');
+				redirect(base_url('home/pendaftaran'),'refresh');
+			}else{
+				echo json_encode(array('msg' => 'gagal upload'));
+				die();
+			}
+		}else{
+			echo "<pre>";
+			print_r($response);
+			echo "<pre>";
+		}	
+		
 	}
 }

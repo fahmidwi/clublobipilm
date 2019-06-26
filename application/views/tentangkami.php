@@ -42,34 +42,22 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-               <h5>Sejarah Club Lobi Pilm</h5>
-               <p>asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd asmdlsamdmasd </p>
+               <h5><?php echo $sejarah->title; ?></h5>
+               <p>
+                <?php echo $sejarah->isi; ?>
+               </p>
             </div>
             <div class="col-md-6">
-              <div class="panel panel-default">
+              <?php foreach ($statis as $res) { ?>
+                <div class="panel panel-default" style="display:<?php echo ($res->id_artikel_statis==$sejarah->id_artikel_statis) ? 'none' : null ; ?>">
                   <div class="panel-heading">
-                    <h3 class="panel-title">VISI</h3>
+                    <h3 class="panel-title"><?php echo strtoupper($res->title); ?></h3>
                   </div>
                   <div class="panel-body">
-                    <ul>
-                      <li>Menjadikan blablaMenjadikan blabla  blabla  blabla  blabla </li>
-                      <li>Menjadikan blablaMenjadikan blabla  blabla  blabla  blabla </li>
-                      <li>Menjadikan blablaMenjadikan blabla  blabla  blabla  blabla </li>
-                    </ul>
+                    <?php echo $res->isi; ?>
                   </div>
                 </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">MISI</h3>
-                  </div>
-                  <div class="panel-body">
-                    <ul>
-                      <li>Menjadikan blablaMenjadikan blabla  blabla  blabla  blabla </li>
-                      <li>Menjadikan blablaMenjadikan blabla  blabla  blabla  blabla </li>
-                      <li>Menjadikan blablaMenjadikan blabla  blabla  blabla  blabla </li>
-                    </ul>
-                  </div>
-                </div>
+              <?php } ?>
             </div>
             <div class="col-md-12">
             <h5>Lokasi</h5>
