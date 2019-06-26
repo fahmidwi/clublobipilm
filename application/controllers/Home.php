@@ -125,4 +125,9 @@ class Home extends CI_Controller {
 			echo "<pre>";
 		}
 	}
+
+	public function pedaftaran()
+	{
+		
+	}
 }
