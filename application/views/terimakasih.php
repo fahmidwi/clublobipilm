@@ -32,7 +32,7 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
           <center>
-            <h2 style="font-family: Century Gothic ; font-weight: bold;">Karya Berhasil Terdaftar!</h2>
+            <h2 style="font-family:Century Gothic !important; font-weight: bold;">Karya Berhasil Terdaftar!</h2>
             <img src="<?php echo base_url('assets/frontend/img/terimakasih.png') ?>" width="35%" height="20%">       <p style="margin-top: 5%; font-size: 15pt;">Terima kasih sudah berpartisipasi dalam acara INDIEFEST ini, untuk info lebih lanjut silahkan hubungi panitia</p>
             <p style="font-size: 17pt;">Salam anak pilm...</p>
             <a href="<?php echo base_url('') ?>" class="btn btn-warning">Kembali ke halaman awal</a>

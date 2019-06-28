@@ -64,14 +64,15 @@ class Home extends CI_Controller {
 
 		$nextpage = $startpage + 3;
 		$prevpage = $startpage - 3;
-		
+
+
 		if($prevpage >= 0){
 			$data['prev'] = "<li class='page-item'><a class='page-link' href='".base_url('Home/berita/'.$prevpage)."'>&laquo; Berita sebelumnya </a></li>";
 		}else{
 			$data['prev'] = "";
 		}
 
-		if ($nextpage > $totaldata) {
+		if ($nextpage >= $totaldata) {
 			$data['next'] = "";
 		}else{
 			$data['next'] = "<li class='page-item'><a class='page-link' href='".base_url('Home/berita/'.$nextpage)."'>Berita Selanjutnya &raquo;</a></li>";

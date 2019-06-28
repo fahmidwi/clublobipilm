@@ -89,7 +89,7 @@
                   $uri = str_replace(" ","-",$judul);
                 ?>
                 <a href="<?php echo base_url('Home/db/'.$res->id_berita.'/'.$uri); ?>" class="thumbnail">
-                  <img src="<?php echo base_url('assets/frontend/img/clp.jpg') ?>">
+                  <img src="<?php echo base_url('assets/frontend/img/berita/'.$res->gambar) ?>">
                 </a>
               </div>
               <div class="col-md-9">
