@@ -1,7 +1,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>srtdash - ICO Dashboard</title>
+    <meta name="author" content="fahmidwisyahputra(@dwifhmi), MochFahmi(@fahmidion_)">
+    <link rel="icon" type="image/png" href="<?php echo base_url('assets/frontend/img/logoclp.png') ?>">
+    <title>Dashboard CLP</title>
     <!-- others css -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">

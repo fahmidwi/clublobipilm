@@ -10,12 +10,13 @@
           <!-- Static Header -->
           <div class="header-text hidden-xs">
             <div class="col-md-12 text-center">
-              <h2><span>Welcome to Shuffle</span></h2>
+              <h2><span><?php echo $res->title; ?></span></h2>
               <br>
-              <h3><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></h3>
+              <h3><span><?php echo $res->desk; ?></span></h3>
               <br>
               <div class="">
-                <a class="btn btn-theme btn-sm btn-min-block" href="#about">About us</a><a class="btn btn-theme btn-sm btn-min-block" href="#works">Our works</a></div>
+                <a class="btn btn-theme btn-sm btn-min-block" href="#about">Tentang Kami</a>
+                <a class="btn btn-theme btn-sm btn-min-block" href="#works">Karya</a></div>
             </div>
           </div>
           <!-- /header-text -->

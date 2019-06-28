@@ -11,20 +11,20 @@
     <div class="login-area" >
         <div class="container">
             <div class="login-box ptb--100" >
-                <form>
+                <form method="POST" action="<?php echo base_url('admin/Login/actLogin') ?>">
                     <div class="login-form-head" style="background-color: #171717;">
-                        <h4>Login</h4>
+                        <h4>Login Dashboard Clp</h4>
                         <p>Hallo, login untuk masuk ke halaman Dashboard</p>
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Username</label>
-                            <input type="text" id="Username">
+                            <input type="text" id="Username" name="username" required>
                             <i class="ti-check-box"></i>
                         </div>
                         <div class="form-gp">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" id="exampleInputPassword1">
+                            <input type="password" id="exampleInputPassword1" name="password" required>
                             <i class="ti-lock"></i>
                         </div>
                         <div class="submit-btn-area">
@@ -37,9 +37,6 @@
         </div>
     </div>
     <!-- login area end -->
-<?php $this->load->view('include/footer_backend'); ?>
-
-
+<?php $this->load->view('include/js_backend'); ?>
 </body>
-
 </html>

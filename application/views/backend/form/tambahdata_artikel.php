@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -77,17 +76,13 @@
         </div>
         <!-- main content area end -->
         <!-- footer area start-->
-        <footer>
-            <div class="footer-area">
-                <p>© Copyright 2018. All right reserved. Template by <a href="">Fahmi Dion</a>.</p>
-            </div>
-        </footer>
+        <?php $this->load->view('include/footer_backend'); ?>
         <!-- footer area end-->
     </div>
     <!-- page container area end -->
     <!-- offset area start -->
 
 </body>
-<?php $this->load->view('include/footer_backend'); ?>
+<?php $this->load->view('include/js_backend'); ?>
 
 </html>

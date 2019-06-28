@@ -10,10 +10,10 @@ Todo:
   ✔ Hubungi kami @started(19-06-25 16:53) @done(19-06-25 22:22) @lasted(5h29m35s)
 
   
-  ☐ Auth Login & Logout
-  ☐ Hak akses
+  ✔ Auth Login & Logout @started(19-06-28 09:52) @done(19-06-28 11:06) @lasted(1h14m22s)
+  ✔ Hak akses @done(19-06-28 11:06)
 
-  ☐ CRUD data statis
+  ☐ CRUD data statis @started(19-06-28 11:06)
   ☐ CRUD data slideshow
   ☐ CRUD data berita
   ☐ CRUD data karya
