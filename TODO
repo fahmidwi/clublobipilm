@@ -9,8 +9,19 @@ Todo:
   ✔ Registrasi @started(19-06-26 11:52) @done(19-06-26 15:04) @lasted(3h12m27s)
   ✔ Hubungi kami @started(19-06-25 16:53) @done(19-06-25 22:22) @lasted(5h29m35s)
 
-  ☐ Auth Login & Logout
   
+  ☐ Auth Login & Logout
+  ☐ Hak akses
+
+  ☐ CRUD data statis
+  ☐ CRUD data slideshow
+  ☐ CRUD data berita
+  ☐ CRUD data karya
+  ☐ CRUD data keanggotaan
+  ☐ CRUD data user
+
+
+
 Archive:
   ✔ Detail Hasil karya @done(19-06-24 15:54) @project(Todo)
   ✔ More Hasil karya @started(19-06-24 15:39) @project(Todo) @done(19-06-24 15:55) @lasted(16m13s)
