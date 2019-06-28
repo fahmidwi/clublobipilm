@@ -54,7 +54,16 @@ class Home extends CI_Controller {
 	public function proker()
 	{
 		if ($this->session->userdata('status_log')) {
-			$this->load->view('backend/data/data_proker');
+			$data['tab'] = '
+					<li><span>Program Kerja</span></li>
+			';
+			$data['proker'] = $this->db->select('tb_proker.*,tb_user.nama')
+																->from('tb_proker')
+																->join('tb_user','tb_proker.id_user = tb_user.id_user')
+																->order_by('tb_proker.id_proker','DESC')
+																->get()
+																->result();
+			$this->load->view('backend/data/data_proker',$data);
 		} else {
             redirect('admin/login','refresh');
         }

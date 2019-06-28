@@ -94,12 +94,44 @@ class SlideShows extends CI_Controller {
           $this->session->set_flashdata('pesan','Data berhasil di ubah');
           redirect('admin/SlideShows');
         } else {
-          echo "upload ini";
-        }
-        
+          $file 			= $_FILES['file']['name'];
+          $pisah 			= explode(".",$file);
+          $ext 			= end($pisah);
+          $rename 		= date("YmdHis");
+          $nama_file 		= $rename.".".$ext;
 
-        
-        
+          $config['upload_path']	 = './assets/frontend/img/slideshow/';
+          $config['allowed_types'] = 'jpg|jpeg|png';
+          $config['file_name']  	 = 'SLIDE_'.$nama_file;
+
+          $this->load->library('upload', $config);
+          $this->upload->initialize($config);
+
+          if($this->upload->do_upload('file')){
+            $data = $this->upload->data();
+            //Compress Image
+            $config['image_library']='gd2';
+            $config['source_image']='./assets/frontend/img/slideshow/'.$data['file_name'];
+            $config['create_thumb']= FALSE;
+            $config['maintain_ratio']= FALSE;
+            $config['quality']= '100%';
+            $config['width']= 1920;
+            $config['height']= 600;
+            $config['new_image']= './assets/frontend/img/slideshow/'.$data['file_name'];
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+            
+            $data = array(
+              'file' => $data['file_name'],
+              'title' => $this->input->post('judul'),
+              'desk' => $this->input->post('deskripsi_slide')
+            );
+
+            $this->mdclp->updateData('tb_slideshows',$data,array('id_slide' => $id));
+            $this->session->set_flashdata('pesan','Data berhasil di ubah');
+            redirect('admin/SlideShows');
+          }  
+      }
     }
 
     public function delete($id)
