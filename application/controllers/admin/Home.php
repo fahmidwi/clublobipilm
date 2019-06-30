@@ -38,12 +38,13 @@ class Home extends CI_Controller
             $data['tab'] = '
 					<li><span>Calong Peserta</span></li>
 			';
-            $data['peserta'] = $this->mdclp->getData('tb_registrasi', 'id_registrasi')->result();
+            $data['peserta'] = $this->mdclp->calonPeserta()->result();
             $this->load->view('backend/data/data_peserta',$data);
         } else {
             redirect('admin/login', 'refresh');
         }
     }
+    
     public function slideshow()
     {
         if ($this->session->userdata('status_log')) {
@@ -97,7 +98,11 @@ class Home extends CI_Controller
     public function genre()
     {
         if ($this->session->userdata('status_log')) {
-            $this->load->view('backend/data/data_genre');
+            $data['tab'] = '
+							<li><span>Genre</span></li>
+						';
+            $data['genre'] = $this->mdclp->getData('tb_genre', 'id_genre')->result();
+            $this->load->view('backend/data/data_genre',$data);
         } else {
             redirect('admin/login', 'refresh');
         }

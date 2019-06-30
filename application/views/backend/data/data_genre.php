@@ -4,92 +4,133 @@
 <?php $this->load->view('include/head_backend'); ?>
 
 <body>
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-    <!-- preloader area end -->
-    <!-- page container area start -->
-    <div class="page-container">
-        <?php $this->load->view('include/sidebar_backend') ?>
-        <!-- main content area start -->
-        <div class="main-content">
-            <!-- header area start -->
-        <?php $this->load->view('include/header_backend') ?>
-        <div class="page-title-area">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">Dashboard</h4>
-                            <ul class="breadcrumbs pull-left">
-                                <li><a href="index.html">Home</a></li>
-                                <li><span>Data Genre</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 clearfix">
-                        <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Message</a>
-                                <a class="dropdown-item" href="#">Settings</a>
-                                <a class="dropdown-item" href="#">Log Out</a>
-                            </div>
-                        </div>
-                    </div>
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+  <!-- preloader area end -->
+  <!-- page container area start -->
+  <div class="page-container">
+    <?php $this->load->view('include/sidebar_backend') ?>
+    <!-- main content area start -->
+    <div class="main-content">
+      <!-- header area start -->
+      <?php $this->load->view('include/header_backend') ?>
+      <?php $this->load->view('include/tabhead') ?>
+      <!-- page title area end -->
+      <div class="main-content-inner">
+        <div class="row">
+          <!-- Dark table start -->
+          <div class="col-12 mt-5">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="header-title">Data Genre</h4>
+                <a href="#" class="badge badge-info" data-toggle="modal" data-target=".tambahgenre">Tambah
+                  Data</a><br><br>
+                <div class="data-tables datatable-dark">
+                  <table id="dataTable3" class="text-center">
+                    <thead class="text-capitalize">
+                      <tr>
+                        <th>No</th>
+                        <th>Genre</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php $no=1;foreach ($genre as $res) {?>
+                      <tr>
+                        <td><?php echo $no; ?></td>
+                        <td><?php echo $res->genre; ?></td>
+                        <td>
+                          <a href="#" class="badge badge-primary" data-toggle="modal"
+                            data-target=".editgenre<?php echo $res->id_genre ?>">Edit</a>
+                          <a href="<?php echo base_url('admin/Genre/delete/'.$res->id_genre) ?>"
+                            class="badge badge-danger"
+                            onClick="return confirm('Aksi ini akan menghapus data secara permanen, hapus?');">Hapus</a>
+                        </td>
+                      </tr>
+                      <?php $no++;} ?>
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             </div>
-            <!-- page title area end -->
-            <div class="main-content-inner">
-                <div class="row">
-                    <!-- Dark table start -->
-                    <div class="col-12 mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title">Data Genre</h4>
-                                <a href="<?php echo base_url('admin/home/tambahdata_genre') ?>" class="badge badge-info">Tambah Data</a><br><br>
+          </div>
+          <!-- Dark table end -->
+          <!-- Large modal start -->
+          <div class="col-lg-6 mt-5">
+            <div class="card">
+              <!-- Large modal -->
+              <!-- TAMBAH DATA -->
+              <div class="modal fade bd-example-modal-lg tambahgenre">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Tambah data Genre</h5>
+                      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <form method="post" action="<?php echo base_url('admin/Genre/ProsesTambah/'); ?>">
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="example-text-input" class="col-form-label">Genre</label>
+                              <input name="genre" class="form-control" type="text" id="example-text-input"
+                                placeholder="masukan Gener" required>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Simpan data</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
 
-                                <div class="data-tables datatable-dark">
-                                    <table id="dataTable3" class="text-center">
-                                        <thead class="text-capitalize">
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Genre</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Horor</td>
-                                                <td>
-                                                    <a href="#" class="badge badge-primary">Edit</a>
-                                                    <a href="#" class="badge badge-danger">Hapus</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+              <!-- EDIT DATA -->
+              <?php foreach ($genre as $res) { ?>
+              <div class="modal fade bd-example-modal-lg editgenre<?php echo $res->id_genre ?>">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Ubah data Genre</h5>
+                      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                     </div>
-                    <!-- Dark table end -->
+                    <form method="post" action="<?php echo base_url('admin/Genre/ProsesUbahData/'.$res->id_genre); ?>">
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="example-text-input" class="col-form-label">Genre</label>
+                              <input name="genre" class="form-control" type="text" id="example-text-input"
+                                value="<?php echo $res->genre ?>" required>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Ubah data</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
+              </div>
+              <?php } ?>
             </div>
+          </div>
         </div>
         <!-- main content area end -->
         <!-- footer area start-->
-        <footer>
-            <div class="footer-area">
-                <p>© Copyright 2018. All right reserved. Template by <a href="">Fahmi Dion</a>.</p>
-            </div>
-        </footer>
+        <?php $this->load->view('include/footer_backend'); ?>
         <!-- footer area end-->
-    </div>
-    <!-- page container area end -->
-    <!-- offset area start -->
+      </div>
+      <!-- page container area end -->
+      <!-- offset area start -->
 
 </body>
-<?php $this->load->view('include/footer_backend'); ?>
+<?php $this->load->view('include/js_backend'); ?>
 
 </html>

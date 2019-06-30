@@ -18,9 +18,11 @@ Todo:
   ✔ CRUD data berita @started(19-06-29 09:49) @done(19-06-29 12:19) @lasted(2h30m17s)
   ☐ CRUD data program kerja @started(19-06-28 21:59)
   ☐ CRUD data karya
+  ✔ CRUD data genre @started(19-06-30 11:12) @done(19-06-30 12:03) @lasted(51m57s)
   ☐ CRUD data keanggotaan
   ☐ CRUD data user
-  ☐ Pendaftaran peserta @started(19-06-29 16:42)
+  ✔ Pendaftaran peserta @started(19-06-29 16:42) @done(19-06-30 11:11) @lasted(18h29m54s)
+  ☐ response untuk peserta
 
 Archive:
   ✔ Detail Hasil karya @done(19-06-24 15:54) @project(Todo)

@@ -40,7 +40,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php $no=1; foreach ($peserta as $res) { ?>
+                      <?php $no=1; foreach ($peserta as $res) { ?>
                       <tr>
                         <td><?php echo $no; ?></td>
                         <td><?php echo $res->nama_perwakilan; ?></td>
@@ -51,11 +51,11 @@
                         <td>
                           <a href="#" class="badge badge-warning" data-toggle="modal"
                             data-target=".detailpeserta<?php echo $res->id_registrasi; ?>">Detail</a>
-                          <a href="#" class="badge badge-primary">Edit</a>
-                          <a href="#" class="badge badge-danger">Hapus</a>
+                          <a href="#" class="badge badge-primary">Konfirmasi</a>
+                          <!-- <a href="#" class="badge badge-danger">Tolak film</a> -->
                         </td>
                       </tr>
-                    <?php $no++;} ?>
+                      <?php $no++;} ?>
                     </tbody>
                   </table>
                 </div>
@@ -72,26 +72,45 @@
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Detail Data Perserta</h5>
+                      <h5 class="modal-title">Detail Data Perserta Film</h5>
                       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src=<?php echo base_url('assets/backend/img/poster_regis/'.$res->poster) ?> width="300" height="400"/>
-                            </div>
-                            <div class="col-md-8">
-                                <h3><?php echo $res->asal_sekolah; ?></h3><hr/>
-                                <h4><?php echo $res->judul_film; ?></h4>
-                                <p style="margin-top:1%;">Durasi : <?php echo $res->durasi; ?></p><br>
-                                <p>Sinopsis : <br><?php echo $res->sinopsis; ?></p><br>
-                                <p>cast : <br><?php echo $res->crew; ?></p><br>
-                            </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <a href="<?php echo $res->link_film; ?>" target="_blank">
+                            <img src=<?php echo base_url('assets/backend/img/poster_regis/'.$res->poster) ?> width="300"
+                              height="400" />
+                          </a>
+                          <p>Klik poster untuk melihat film</p>
                         </div>
+                        <div class="col-md-8">
+                          <h3><?php echo $res->asal_sekolah; ?></h3>
+                          <hr />
+                          <div class="row">
+                            <div class="col-md-4">
+                              <h4><?php echo $res->judul_film; ?></h4>
+                            </div>
+                            <div class="col-md-7">
+                              <h5 style='float:right;'><?php echo $res->genre; ?></h5>
+                            </div>
+                          </div>
+                          <p style="color:#ccc;font-size:12pt;">tanngal registrasi:
+                            <?php echo $res->tanggal_registrasi; ?></p><br>
+                          <p style="margin-top:1%;">Durasi : <?php echo $res->durasi; ?></p><br>
+                          <p>Sinopsis : <br><?php echo $res->sinopsis; ?></p><br>
+                          <p>cast : <br><?php echo $res->crew; ?></p><br>
+                          <p>Link film : <a href="<?php echo $res->link_film; ?>" target="_blank"><?php echo $res->link_film; ?></a></p>
+                          <br><br>
+
+                          <h5>Kontak</h5>
+                          <p><?php echo $res->email; ?></p>
+                          <p><?php echo $res->no_tlp; ?></p>
+                        </div>
+                      </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                   </div>
                 </div>
@@ -106,8 +125,8 @@
     <!-- main content area end -->
     <!-- footer area start-->
     <footer>
-    <?php $this->load->view('include/footer_backend'); ?>
-    <!-- footer area end-->
+      <?php $this->load->view('include/footer_backend'); ?>
+      <!-- footer area end-->
   </div>
   <!-- page container area end -->
   <!-- offset area start -->

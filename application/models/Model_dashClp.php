@@ -27,5 +27,14 @@ Class Model_dashClp extends CI_model{
     {
         return $this->db->delete($table,$where);
     }
+
+    public function calonPeserta()
+    {
+        return $this->db->select('reg.*,gen.genre')
+                        ->from('tb_registrasi AS reg')
+                        ->join('tb_genre AS gen','reg.id_genre = gen.id_genre')
+                        ->order_by('reg.id_registrasi','DESC')
+                        ->get();
+    }
 }
 ?>
