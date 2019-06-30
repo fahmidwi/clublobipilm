@@ -45,7 +45,7 @@
 																							<td><?php echo $res->desk; ?></td>
 																							<td>
 																								<a href="<?php echo base_url('admin/SlideShows/ubahData/'.$res->id_slide) ?>" class="badge badge-primary">Edit</a>
-																								<a href="<?php echo base_url('admin/SlideShows/delete/'.$res->id_slide) ?>" class="badge badge-danger">Hapus</a>
+																								<a href="<?php echo base_url('admin/SlideShows/delete/'.$res->id_slide) ?>" class="badge badge-danger" onClick="return confirm('Aksi ini akan menghapus data secara permanen, hapus?')">Hapus</a>
 																							</td>
                                             </tr>
                                         <?php }  ?>

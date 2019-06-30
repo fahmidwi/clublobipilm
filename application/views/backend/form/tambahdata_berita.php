@@ -4,93 +4,79 @@
 <?php $this->load->view('include/head_backend'); ?>
 
 <body>
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-    <!-- preloader area end -->
-    <!-- page container area start -->
-    <div class="page-container">
-        <?php $this->load->view('include/sidebar_backend') ?>
-        <!-- main content area start -->
-        <div class="main-content">
-            <!-- header area start -->
-        <?php $this->load->view('include/header_backend') ?>
-        <div class="page-title-area">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">Dashboard</h4>
-                            <ul class="breadcrumbs pull-left">
-                                <li><a href="index.html">Home</a></li>
-                                <li><span>Tambah Data Berita</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 clearfix">
-                        <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Message</a>
-                                <a class="dropdown-item" href="#">Settings</a>
-                                <a class="dropdown-item" href="#">Log Out</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- page title area end -->
-            <div class="main-content-inner">
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+  <!-- preloader area end -->
+  <!-- page container area start -->
+  <div class="page-container">
+    <?php $this->load->view('include/sidebar_backend') ?>
+    <!-- main content area start -->
+    <div class="main-content">
+      <!-- header area start -->
+      <?php $this->load->view('include/header_backend') ?>
+      <?php $this->load->view('include/tabhead') ?>
+      <!-- page title area end -->
+      <div class="main-content-inner">
+        <div class="row">
+          <!-- Dark table start -->
+          <div class="col-12 mt-5">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="header-title">Form Tambah Berita</h4>
+                <hr>
+                <form method="POST" action="<?php echo base_url('admin/Berita/prosesTambahData') ?>" enctype="multipart/form-data">
                 <div class="row">
-                    <!-- Dark table start -->
-                    <div class="col-12 mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                        <h4 class="header-title">Form Tambah Berita</h4><hr>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="col-form-label">Judul Berita</label>
-                                            <input class="form-control" type="text" id="example-text-input" placeholder="Judul Berita">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="col-form-label">Deskripsi Berita</label>
-                                            <textarea class="form-control" type="text" id="example-text-input" placeholder="Deskripsi Berita"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="col-form-label">Foto</label>
-                                            <input class="form-control" type="file" id="example-text-input" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="col-form-label">Expired Berita</label>
-                                            <input class="form-control" type="date" id="example-text-input" >
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-success btn-block">SIMPAN</button>
-                                </div>
-                            </div>
-                        </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="col-form-label">Judul Berita</label>
+                      <input class="form-control" type="text" name="judul_berita" id="example-text-input" placeholder="Judul Berita" pattern="[a-zA-Z0-9\s]+" required>
+                      <i><p style="color:red;">judul tidak boleh mengandung karakter spesial</p></i>
                     </div>
-                    <!-- Dark table end -->
-
+                    <div class="form-group">
+                      <label for="example-text-input" class="col-form-label">Deskripsi Berita</label>
+                      <textarea name="isi_berita" required>
+                      </textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="col-form-label">Foto</label>
+                      <input class="form-control" type="file" name="gambar" id="example-text-input" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="col-form-label">Sumber</label>
+                      <input class="form-control" type="text" name="sumber" id="example-text-input" placholder="ex:https://berita.com" required>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-success btn-block">SIMPAN</button>
                 </div>
+                <form>
+              </div>
             </div>
+          </div>
+          <!-- Dark table end -->
         </div>
-        <!-- main content area end -->
-        <!-- footer area start-->
-        <footer>
-            <div class="footer-area">
-                <p>© Copyright 2018. All right reserved. Template by <a href="">Fahmi Dion</a>.</p>
-            </div>
-        </footer>
-        <!-- footer area end-->
+      </div>
     </div>
-    <!-- page container area end -->
-    <!-- offset area start -->
-
+    <!-- main content area end -->
+    <!-- footer area start-->
+    <?php $this->load->view('include/footer_backend'); ?>
+    <!-- footer area end-->
+  </div>
+  <!-- page container area end -->
+  <!-- offset area start -->
 </body>
-<?php $this->load->view('include/footer_backend'); ?>
-
+<?php $this->load->view('include/js_backend'); ?>
+<script>
+CKEDITOR.replace( 'isi_berita', {
+    toolbar: [
+        { name: 'document', items: ['NewPage', 'Preview', '-', 'Templates' ] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+        '/',                                          // Line break - next group will be placed in new line.
+        { name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
+    ]
+});
+</script>
 </html>

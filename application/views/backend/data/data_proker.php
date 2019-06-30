@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<?php $this->load->view('include/head_backend'); ?>
+<?php $this->load->view('include/head_backend');?>
 
 <body>
 <div id="preloader">
@@ -10,12 +10,12 @@
 <!-- preloader area end -->
 <!-- page container area start -->
 <div class="page-container">
-<?php $this->load->view('include/sidebar_backend') ?>
+<?php $this->load->view('include/sidebar_backend')?>
 <!-- main content area start -->
 <div class="main-content">
 		<!-- header area start -->
-<?php $this->load->view('include/header_backend') ?>
-<?php $this->load->view('include/tabhead') ?>
+<?php $this->load->view('include/header_backend')?>
+<?php $this->load->view('include/tabhead')?>
 		<!-- page title area end -->
 		<div class="main-content-inner">
 				<div class="row">
@@ -38,20 +38,20 @@
 													</tr>
 											</thead>
 											<tbody>
-											<?php $no=1;foreach ($proker as $res) { ?>
+											<?php $no = 1;foreach ($proker as $res) {?>
 												<tr>
 													<td><?php echo $no; ?></td>
 													<td><?php echo $res->judul; ?></td>
-													<td><?php echo substr($res->program_kerja,0,200)."..."; ?></td>
+													<td><?php echo substr($res->program_kerja, 0, 200) . "..."; ?></td>
 													<td><?php echo $res->create_date; ?></td>
 													<td><?php echo $res->nama; ?></td>
 													<td>
 															<a href="#" class="badge badge-warning" data-toggle="modal" data-target=".proker<?php echo $res->id_proker ?>">Detail</a>
 															<a href="#" class="badge badge-primary" data-toggle="modal" data-target=".editproker<?php echo $res->id_proker ?>">Edit</a>
-															<a href="<?php echo base_url('admin/Proker/delete/'.$res->id_proker) ?>" onClick="return confirm('Menghapus data secara permanen, hapus?')" class="badge badge-danger">Hapus</a>
+															<a href="<?php echo base_url('admin/Proker/delete/' . $res->id_proker) ?>" onClick="return confirm('Menghapus data secara permanen, hapus?')" class="badge badge-danger">Hapus</a>
 													</td>
 												</tr>
-											<?php $no++;} ?>
+											<?php $no++;}?>
 											</tbody>
 										</table>
 									</div>
@@ -78,7 +78,8 @@
 														<div class="col-md-12">
 																<div class="form-group">
 																		<label for="example-text-input" class="col-form-label">Judul Proker</label>
-																		<input name="judul" class="form-control" type="text" id="example-text-input" placholder="masukan judul program kerja">
+																		<input name="judul" class="form-control" type="text" id="example-text-input" placholder="masukan judul program kerja" pattern="[a-zA-Z0-9\s]+" required>
+																		<i><p style="color:red;">judul tidak boleh mengandung karakter spesial</p></i>
 																</div>
 																<div class="form-group">
 																		<label for="example-text-input" class="col-form-label">Deskripsi Program kerja</label>
@@ -97,7 +98,7 @@
 									</div>
 								</div>
 								<!-- DETAIL -->
-								<?php foreach ($proker as $res) { ?>
+								<?php foreach ($proker as $res) {?>
 								<div class="modal fade bd-example-modal-lg proker<?php echo $res->id_proker ?>">
 									<div class="modal-dialog modal-lg">
 										<div class="modal-content">
@@ -107,10 +108,10 @@
 											</div>
 											<div class="modal-body">
 												<?php echo $res->program_kerja; ?><br>
-												<i style="color:grey;">dibuat oleh : <?php echo $res->nama.' | '.$res->create_date; ?></i><br>
-												<?php if ($res->create_update != '0000-00-00') { ?>
+												<i style="color:grey;">dibuat oleh : <?php echo $res->nama . ' | ' . $res->create_date; ?></i><br>
+												<?php if ($res->create_update != '0000-00-00') {?>
 													<i style="color:grey;">diubah pada : <?php echo $res->create_update; ?></i><br>
-												<?php } ?>
+												<?php }?>
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -118,9 +119,9 @@
 										</div>
 									</div>
 								</div>
-								<?php } ?>
+								<?php }?>
 								<!-- UBAH DATA -->
-								<?php $no=1;foreach ($proker as $res) { ?>
+								<?php $no = 1;foreach ($proker as $res) {?>
 								<div class="modal fade bd-example-modal-lg editproker<?php echo $res->id_proker ?>">
 									<input type="hidden" id="jumlahdata" value="<?php echo count($proker); ?>"/>
 									<div class="modal-dialog modal-lg">
@@ -129,7 +130,7 @@
 												<h5 class="modal-title">Ubah data proker</h5>
 												<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 											</div>
-											<form method="post" action="<?php echo base_url('admin/Proker/ProsesUbahData/'.$res->id_proker) ?>">
+											<form method="post" action="<?php echo base_url('admin/Proker/ProsesUbahData/' . $res->id_proker) ?>">
 												<div class="modal-body">
 													<div class="row">
 														<div class="col-md-12">
@@ -155,8 +156,8 @@
 										</div>
 									</div>
 								</div>
-								<?php $no++;} ?>
-								
+								<?php $no++;}?>
+
 							</div>
 						</div>
 						<!-- Large modal modal end -->
@@ -165,14 +166,14 @@
 </div>
 <!-- main content area end -->
 <!-- footer area start-->
-<?php $this->load->view('include/footer_backend'); ?>
+<?php $this->load->view('include/footer_backend');?>
 <!-- footer area end-->
 </div>
 <!-- page container area end -->
 <!-- offset area start -->
 
 </body>
-<?php $this->load->view('include/js_backend'); ?>
+<?php $this->load->view('include/js_backend');?>
 <script>
 		var jumlahdata = document.getElementById('jumlahdata').value;
 		for (let index = 1; index <= jumlahdata; index++) {
@@ -184,7 +185,7 @@
         ]
     	});
 		}
-		
+
 		CKEDITOR.replace( 'deskripsi_proker', {
         toolbar: [
             { name: 'document', items: ['NewPage', 'Preview', '-', 'Templates' ] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.

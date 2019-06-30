@@ -28,8 +28,6 @@
                     <i class="mdi mdi-calendar-text" ></i><i>17 Januari 2019</i>
                     <?php 
                       $judul = strtolower($res->judul_berita);
-                      $ex = explode(" ",$judul);
-                      $judul = $ex[0].'-'.$ex[1].'-'.$ex[2];
                       $uri = str_replace(" ","-",$judul);
                     ?>
                     <p><?php  echo substr($res->isi_berita,0,100).'...'; ?><a href="<?php echo base_url('Home/db/'.$res->id_berita.'/'.$uri); ?>"><i>Lihat selengkapnya</i></a></p>

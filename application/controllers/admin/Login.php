@@ -45,7 +45,8 @@ class Login extends CI_Controller {
             $this->session->set_userdata($dataSess);
             redirect('admin/home');
         } else {
-            redirect('admin/home');
+            $this->session->set_flashdata('pesan', 'Username dan password salah!!1');
+            redirect('admin/Login');
         }
         
 
