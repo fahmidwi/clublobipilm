@@ -42,7 +42,8 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group"><label class="col-form-label">Gambar lama</label><br><br>
+                      <div class="form-group">
+                        <label class="col-form-label">Gambar lama</label><br><br>
                         <img src="<?php echo base_url('assets/frontend/img/berita/'.$berita->gambar) ?>" width="200px"
                           height="100px" /><br><br>
                         <label for="example-text-input" class="col-form-label">Foto</label>

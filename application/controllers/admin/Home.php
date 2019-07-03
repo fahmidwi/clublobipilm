@@ -8,6 +8,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Model_dashClp', 'mdclp');
+        $this->load->model('Model_clp', 'mclp');
     }
 
     public function index()
@@ -90,7 +91,11 @@ class Home extends CI_Controller
     public function karya()
     {
         if ($this->session->userdata('status_log')) {
-            $this->load->view('backend/data/data_karyaanggota');
+            $data['tab'] = '
+					<li><span>Karya Anggota</span></li>
+			';
+    		$data['karya'] = $this->mclp->getAllKarya(null,null)->result();
+            $this->load->view('backend/data/data_karyaanggota',$data);
         } else {
             redirect('admin/login', 'refresh');
         }

@@ -4,102 +4,114 @@
 <?php $this->load->view('include/head_backend'); ?>
 
 <body>
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-    <!-- preloader area end -->
-    <!-- page container area start -->
-    <div class="page-container">
-        <?php $this->load->view('include/sidebar_backend') ?>
-        <!-- main content area start -->
-        <div class="main-content">
-            <!-- header area start -->
-        <?php $this->load->view('include/header_backend') ?>
-        <div class="page-title-area">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">Dashboard</h4>
-                            <ul class="breadcrumbs pull-left">
-                                <li><a href="index.html">Home</a></li>
-                                <li><span>Tambah Data Karya Anggota</span></li>
-                            </ul>
-                        </div>
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+  <!-- preloader area end -->
+  <!-- page container area start -->
+  <div class="page-container">
+    <?php $this->load->view('include/sidebar_backend') ?>
+    <!-- main content area start -->
+    <div class="main-content">
+      <!-- header area start -->
+      <?php $this->load->view('include/header_backend') ?>
+      <?php $this->load->view('include/tabhead') ?>
+      <!-- page title area end -->
+      <div class="main-content-inner">
+        <div class="row">
+          <!-- Dark table start -->
+          <div class="col-12 mt-5">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="header-title">Form Tambah Karya Anggota</h4>
+                <hr>
+                <form method="POST" action="<?php echo base_url('admin/Karya/prosesTambahData') ?>"
+                  enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="example-text-input" class="col-form-label">Judul</label>
+                        <input class="form-control" name="judul" type="text" id="example-text-input" placeholder="Judul"
+                          required>
+                      </div>
+                      <div class="form-group">
+                        <label for="example-text-input" class="col-form-label">Genre Film</label>
+                        <select class="form-control" name="genre">
+                          <?php foreach ($genre as $res) { ?>
+                          <option value="<?php echo $res->id_genre?>"><?php echo $res->genre?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>Durasi Film</label>
+                        <input type="text" name="durasi" class="form-control"
+                          placeholder="Masukan Durasi film: ex 12 min" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="example-email-input" class="col-form-label">Sinopsis</label>
+                        <textarea name="sinopsis"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="example-email-input" class="col-form-label">Crew</label>
+                        <textarea name="crew"></textarea>
+                      </div>
                     </div>
-                    <div class="col-sm-6 clearfix">
-                        <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Message</a>
-                                <a class="dropdown-item" href="#">Settings</a>
-                                <a class="dropdown-item" href="#">Log Out</a>
-                            </div>
-                        </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="example-email-input" class="col-form-label">Poster</label>
+                        <input class="form-control" name="file" type="file" placeholder="Poster" id="example-email-input">
+                      </div>
+                      <div class="form-group">
+                        <label for="example-text-input" class="col-form-label">Link Film (Google Drive)</label>
+                        <input class="form-control" name="link" type="text" id="example-text-input" placeholder="Link Google Drive" required>
+                      </div>
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-success btn-block">SIMPAN</button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <!-- page title area end -->
-            <div class="main-content-inner">
-                <div class="row">
-                    <!-- Dark table start -->
-                    <div class="col-12 mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                        <h4 class="header-title">Form Tambah Karya Anggota</h4><hr>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="col-form-label">Nama Anggota</label>
-                                            <input class="form-control" type="text" id="example-text-input" placeholder="Nama Anggota">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="col-form-label">Judul</label>
-                                            <input class="form-control" type="text" id="example-text-input" placeholder="Judul">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="example-email-input" class="col-form-label">Sinopsis</label>
-                                            <textarea class="form-control" type="file" placeholder="Sinopsis" id="example-email-input"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="example-email-input" class="col-form-label">Crew</label>
-                                            <textarea class="form-control" type="file" placeholder="Crew" id="example-email-input"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-email-input" class="col-form-label">Poster</label>
-                                            <input class="form-control" type="file" placeholder="Poster" id="example-email-input">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="col-form-label">Link Google Drive</label>
-                                            <input class="form-control" type="text" id="example-text-input" placeholder="Link Google Drive">
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-success btn-block">SIMPAN</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Dark table end -->
+          </div>
+          <!-- Dark table end -->
 
-                </div>
-            </div>
         </div>
-        <!-- main content area end -->
-        <!-- footer area start-->
-        <footer>
-            <div class="footer-area">
-                <p>© Copyright 2018. All right reserved. Template by <a href="">Fahmi Dion</a>.</p>
-            </div>
-        </footer>
-        <!-- footer area end-->
+      </div>
     </div>
-    <!-- page container area end -->
-    <!-- offset area start -->
+    <!-- main content area end -->
+    <!-- footer area start-->
+    <?php $this->load->view('include/footer_backend'); ?>
+    <!-- footer area end-->
+  </div>
+  <!-- page container area end -->
+  <!-- offset area start -->
 
 </body>
-<?php $this->load->view('include/footer_backend'); ?>
+<?php $this->load->view('include/js_backend'); ?>
+<script>
+CKEDITOR.replace('sinopsis', {
+  toolbar: [{
+      name: 'document',
+      items: ['NewPage', 'Preview', '-', 'Templates']
+    }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+    '/', // Line break - next group will be placed in new line.
+    {
+      name: 'basicstyles',
+      items: ['Bold', 'Italic']
+    }
+  ]
+});
+CKEDITOR.replace('crew', {
+  toolbar: [{
+      name: 'document',
+      items: ['NewPage', 'Preview', '-', 'Templates']
+    }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+    '/', // Line break - next group will be placed in new line.
+    {
+      name: 'basicstyles',
+      items: ['Bold', 'Italic']
+    }
+  ]
+});
+</script>
 
 </html>

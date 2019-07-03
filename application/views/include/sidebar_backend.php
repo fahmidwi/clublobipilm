@@ -9,7 +9,7 @@
     <div class="menu-inner">
       <nav>
         <ul class="metismenu" id="menu">
-          <li class="active">
+          <li>
             <a href="<?php echo base_url('admin/home/CalonPesertaClp') ?>" aria-expanded="true"><i
                 class="ti-dashboard"></i><span>Peserta Indiefest</span></a>
           </li>
