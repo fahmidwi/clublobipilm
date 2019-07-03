@@ -116,7 +116,10 @@ class Home extends CI_Controller
     public function user()
     {
         if ($this->session->userdata('status_log')) {
-            $this->load->view('backend/data/data_user');
+            $data['tab'] = '
+					<li><span>Slideshows</span></li>
+			';
+            $this->load->view('backend/data/data_user',$data);
         } else {
             redirect('admin/login', 'refresh');
         }

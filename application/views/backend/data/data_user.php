@@ -34,7 +34,6 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Username</th>
-                        <th>Password</th>
                         <th>Level</th>
                         <th>Aksi</th>
                       </tr>
