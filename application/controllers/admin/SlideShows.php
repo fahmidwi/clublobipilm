@@ -70,7 +70,7 @@ class SlideShows extends CI_Controller {
     {
         if ($this->session->userdata('status_log')) {
             $data['tab'] = '
-                <li><a href="'.base_url('admin/ArtikelStatis').'">SlideShows</a></li>
+                <li><a href="'.base_url('admin/Slideshows').'">SlideShows</a></li>
                 <li><span>Edit SlideShows</span></li>
             ';
             $data['slideshow'] = $this->mdclp->getWhere('tb_slideshows',array('id_slide' => $id))->row();

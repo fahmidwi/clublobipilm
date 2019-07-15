@@ -37,4 +37,4 @@
   <script src="<?php echo base_url('lib/frontend/js/owl.carousel.min.js'); ?>"></script>
   <script src="<?php echo base_url('lib/frontend/js/nivo-lightbox.min.js'); ?>"></script>
   <script src="<?php echo base_url('lib/frontend/js/custom.js'); ?>"></script>
-  <script src="<?php echo base_url('lib/frontend/contactform/contactform.js'); ?>"></script>
+ 

@@ -1,4 +1,4 @@
-Todo:
+CLP WEB SITE:
   ✔ Hasil karya index @started(19-06-24 12:09) @project(Todo) @done(19-06-25 09:13) @lasted(21h4m23s)
   ☐ Pagination Hasil Karya
   ☐ Tanggal tanggal pada front end
@@ -16,15 +16,40 @@ Todo:
   ✔ CRUD data statis @started(19-06-28 11:06) @done(19-06-28 14:56) @lasted(3h50m42s)
   ✔ CRUD data slideshow @started(19-06-28 16:23) @done(19-06-28 21:35) @lasted(5h12m34s)
   ✔ CRUD data berita @started(19-06-29 09:49) @done(19-06-29 12:19) @lasted(2h30m17s)
-  ☐ CRUD data program kerja @started(19-06-28 21:59)
-  ☐ CRUD data karya
+  ✔ CRUD data program kerja @started(19-06-28 21:59) @done(19-07-03 11:10) @lasted(4d13h11m1s)
+  ✔ CRUD data karya @done(19-07-03 11:09)
   ✔ CRUD data genre @started(19-06-30 11:12) @done(19-06-30 12:03) @lasted(51m57s)
-  ☐ CRUD data keanggotaan
-  ☐ CRUD data user
+  ✔ CRUD data keanggotaan @done(19-07-08 13:44)
+  ✔ Hak Akses @started(19-07-03 11:16) @done(19-07-03 15:27) @lasted(4h11m39s)
+  ✔ CRUD data user @started(19-07-03 11:09) @done(19-07-03 11:16) @lasted(7m20s)
   ✔ Pendaftaran peserta @started(19-06-29 16:42) @done(19-06-30 11:11) @lasted(18h29m54s)
-  ☐ response untuk peserta
+  ✔ Pendaftaran anggota @started(19-07-03 15:27) @done(19-07-09 16:24) @lasted(6d57m20s)
+  ✔ login @done(19-07-08 13:44)
 
-Archive:
+  Revisi Web CLP
+  ✔ Nama menu beranda ganti Home @started(19-07-06 21:07) @done(19-07-06 21:07) @lasted(48s)
+  ✔ Angkatan diubah jangan taun @started(19-07-06 21:09) @done(19-07-06 21:14) @lasted(5m16s)
+  ✔ Halaman berhasil daftar anggota atasnya di kapital bawahnya diubah jadi terima kasih atas kerja samanya @started(19-07-06 21:14) @done(19-07-06 21:21) @lasted(7m58s)
+  ✔ Gallery Backend @started(19-07-08 14:11) @done(19-07-08 14:11) @lasted(1m)
+  ✔ NPM 5 digit belakang @started(19-07-08 14:14) @done(19-07-08 14:33) @lasted(19m17s)
+  ✔ Dasboard admin jangan artikel statis di ganti tentang kami @started(19-07-09 09:06) @done(19-07-09 09:10) @lasted(4m12s)
+  ✔ Keanggotaan tambahkan foto @started(19-07-08 14:33) @done(19-07-08 15:48) @lasted(1h15m5s)
+  ✔ Admin bisa hapus user tapi hanya ganti status @started(19-07-09 21:49) @done(19-07-09 22:01) @lasted(12m51s)
+  ✔ Tambah pengaturan pendaftaran indipes @started(19-07-09 09:30) @done(19-07-09 16:23) @lasted(6h53m9s)
+  ✔ validasi buka tutup pendaftaran @done(19-07-09 21:49)
+  ✔ autocomplete sekolah @started(19-07-10 14:14) @done(19-07-15 11:07) @lasted(4d20h53m41s)
+  ✔ feedback email ke pendaftar @done(19-07-09 23:28)
+  ✔ feedback email ke anggota @done(19-07-15 11:16)
+  ☐ Gallery frontend
+  ✔ Asal sekolah dibuat paling atas @done(19-07-08 09:45)
+  ✔ Menit Option @done(19-07-08 16:14)
+  ✔ Tulisan CLP nya gedean pasin di tengah @done(19-07-15 11:16)
+  ✔ Tambah menu galeri @done(19-07-15 11:16)
+  ☐ Loading pake logo
+  ✔ Atas navigasi diubah item, logo jadi putih @done(19-07-15 11:16)
+  ☐ Dibuat pop up tema di awalwebsite
+  
+  Archive:
   ✔ Detail Hasil karya @done(19-06-24 15:54) @project(Todo)
   ✔ More Hasil karya @started(19-06-24 15:39) @project(Todo) @done(19-06-24 15:55) @lasted(16m13s)
   ✔ Berita @done(19-06-24 11:32) @project(Todo)

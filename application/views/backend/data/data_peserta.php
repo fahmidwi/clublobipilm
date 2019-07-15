@@ -21,6 +21,13 @@
         <div class="row">
           <!-- Dark table start -->
           <div class="col-12 mt-5">
+            <?php if ($this->session->flashdata('pesan')) { ?>
+            <div class="alert alert-success" role="alert">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Pesan :</span>
+              <?php echo $this->session->flashdata('pesan'); ?>
+            </div><br>
+            <?php } ?>
             <div class="card">
               <div class="card-body">
                 <h4 class="header-title">Data Peserta</h4><br>
@@ -36,6 +43,7 @@
                         <th>Email</th>
                         <th>Judul Film</th>
                         <th>Durasi</th>
+                        <th>status</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -47,11 +55,21 @@
                         <td><?php echo $res->asal_sekolah; ?></td>
                         <td><?php echo $res->email; ?></td>
                         <td><?php echo $res->judul_film; ?></td>
-                        <td><?php echo $res->durasi; ?></td>
+                        <td><?php echo $res->durasi.' Menit'; ?></td>
+                        <td>
+                          <?php if ($res->flg_konfirmasi == 1) { ?>
+                          <p style="color:green;font-weight:bold;">Terkonfirmasi</p>
+                          <?php } else { ?>
+                          <p style="color:yellow;font-weight:bold;">Menunggu Konfirmasi</p>
+                          <?php }?></td>
                         <td>
                           <a href="#" class="badge badge-warning" data-toggle="modal"
                             data-target=".detailpeserta<?php echo $res->id_registrasi; ?>">Detail</a>
-                          <a href="#" class="badge badge-primary">Konfirmasi</a>
+                          <?php if ($res->flg_konfirmasi == 0) { ?>
+                          <a href="<?php echo base_url('admin/home/konfimasicalonpeserta/'.$res->id_registrasi) ?>"
+                            class="badge badge-primary"
+                            onclick="return confirm('Data telah sesuai?, Konfirmasi');">Konfirmasi</a>
+                          <?php } ?>
                           <!-- <a href="#" class="badge badge-danger">Tolak film</a> -->
                         </td>
                       </tr>
@@ -96,11 +114,14 @@
                             </div>
                           </div>
                           <p style="color:#ccc;font-size:12pt;">tanngal registrasi:
-                            <?php echo $res->tanggal_registrasi; ?></p><br>
-                          <p style="margin-top:1%;">Durasi : <?php echo $res->durasi; ?></p><br>
+                            <?php 
+                              $pisahdatetime = explode(' ',$res->tanggal_registrasi);
+                            echo changeDate($pisahdatetime[0]).' '.$pisahdatetime[1]; ?></p><br>
+                          <p style="margin-top:1%;">Durasi : <?php echo $res->durasi.' Menit'; ?></p><br>
                           <p>Sinopsis : <br><?php echo $res->sinopsis; ?></p><br>
                           <p>cast : <br><?php echo $res->crew; ?></p><br>
-                          <p>Link film : <a href="<?php echo $res->link_film; ?>" target="_blank"><?php echo $res->link_film; ?></a></p>
+                          <p>Link film : <a href="<?php echo $res->link_film; ?>"
+                              target="_blank"><?php echo $res->link_film; ?></a></p>
                           <br><br>
 
                           <h5>Kontak</h5>

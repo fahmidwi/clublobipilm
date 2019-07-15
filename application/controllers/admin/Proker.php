@@ -27,19 +27,26 @@ class Proker extends CI_Controller {
       redirect('admin/Proker');
     }
 
+    public function ubahData($id)
+    {
+      $data['tab'] = '
+                <li><a href="'.base_url('admin/Proker').'">Program kerja</a></li>
+                <li><span>Ubah program kerja</span></li>
+            ';
+      $data['proker'] = $this->mdclp->getWhere('tb_proker',array('id_proker' => $id))->row();
+      $this->load->view('backend/form/edit/edit_proker',$data);
+    }
+
     public function ProsesUbahData($id)
     {
-      $no = $this->input->post('no');
-      $namedesk = 'deskripsi_proker'.$no;
-      $a = $this->input->post($namedesk);
-      echo $a;
+      $a = $this->input->post('program_kerja');
       $data = array(
         'judul' => $this->input->post('judul'),
         'program_kerja' => $a,
         'create_update' => date('Y-m-d'),
         'id_user' => $this->session->userdata('id_user'),
       );
-      print_r($data);die();
+
       $this->mdclp->updateData('tb_proker',$data,array('id_proker' => $id));
       redirect('admin/Proker');
     }

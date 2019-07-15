@@ -47,7 +47,7 @@
 													<td><?php echo $res->nama; ?></td>
 													<td>
 															<a href="#" class="badge badge-warning" data-toggle="modal" data-target=".proker<?php echo $res->id_proker ?>">Detail</a>
-															<a href="#" class="badge badge-primary" data-toggle="modal" data-target=".editproker<?php echo $res->id_proker ?>">Edit</a>
+															<a href="<?php echo base_url('admin/Proker/ubahData/' . $res->id_proker) ?>" class="badge badge-primary">Edit</a>
 															<a href="<?php echo base_url('admin/Proker/delete/' . $res->id_proker) ?>" onClick="return confirm('Menghapus data secara permanen, hapus?')" class="badge badge-danger">Hapus</a>
 													</td>
 												</tr>
@@ -120,44 +120,6 @@
 									</div>
 								</div>
 								<?php }?>
-								<!-- UBAH DATA -->
-								<?php $no = 1;foreach ($proker as $res) {?>
-								<div class="modal fade bd-example-modal-lg editproker<?php echo $res->id_proker ?>">
-									<input type="hidden" id="jumlahdata" value="<?php echo count($proker); ?>"/>
-									<div class="modal-dialog modal-lg">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title">Ubah data proker</h5>
-												<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-											</div>
-											<form method="post" action="<?php echo base_url('admin/Proker/ProsesUbahData/' . $res->id_proker) ?>">
-												<div class="modal-body">
-													<div class="row">
-														<div class="col-md-12">
-																<div class="form-group">
-																		<label for="example-text-input" class="col-form-label">Judul Proker</label>
-																		<input name="judul" class="form-control" type="text" id="example-text-input" value="<?php echo $res->judul; ?>">
-																</div>
-																<div class="form-group">
-																		<label for="example-text-input" class="col-form-label">Deskripsi Proker</label>
-																		<input type="hidden" name="no" value="<?php echo $no; ?>" />
-																		<textarea name="deskripsi_edit_proker<?php echo $no; ?>">
-																			<?php echo $res->program_kerja; ?>
-																		</textarea>
-																</div>
-														</div>
-													</div>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-													<button type="submit" class="btn btn-primary">Simpan perubahan</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-								<?php $no++;}?>
-
 							</div>
 						</div>
 						<!-- Large modal modal end -->
@@ -175,17 +137,6 @@
 </body>
 <?php $this->load->view('include/js_backend');?>
 <script>
-		var jumlahdata = document.getElementById('jumlahdata').value;
-		for (let index = 1; index <= jumlahdata; index++) {
-			CKEDITOR.replace( 'deskripsi_edit_proker'+index, {
-        toolbar: [
-            { name: 'document', items: ['NewPage', 'Preview', '-', 'Templates' ] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
-            '/',                                          // Line break - next group will be placed in new line.
-            { name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
-        ]
-    	});
-		}
-
 		CKEDITOR.replace( 'deskripsi_proker', {
         toolbar: [
             { name: 'document', items: ['NewPage', 'Preview', '-', 'Templates' ] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.

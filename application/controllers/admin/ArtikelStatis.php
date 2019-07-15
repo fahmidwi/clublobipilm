@@ -18,8 +18,8 @@ class ArtikelStatis extends CI_Controller {
     {
         if ($this->session->userdata('status_log')) {
             $data['tab'] = '
-                <li><a href="'.base_url('admin/ArtikelStatis').'">Artikel Statis</a></li>
-                <li><span>Edit Artikel Statis</span></li>
+                <li><a href="'.base_url('admin/ArtikelStatis').'">Tentang kami</a></li>
+                <li><span>Edit Tentang kami</span></li>
             ';
             $data['artikelstatis'] = $this->mdclp->getWhere('tb_artikel_statis',array('id_artikel_statis' => $id))->row();
             $this->load->view('backend/form/edit/edit_artikelstatis',$data);

@@ -130,8 +130,21 @@ class Home extends CI_Controller {
 
 	public function pendaftaran()
 	{
+		$data['settings'] = $this->mclp->getData('settings','id_settings')->row();
+		// if ($data['settings']->bukaDaftar == date('Y-m-d')) {
+		// 	echo "Ya buka";
+		// } else if($data['settings']->tutupDaftar == '2019-07-10'){
+		// 	echo "Tutup";
+		// }
+		//die();
 		$data['genre'] = $this->mclp->getData('tb_genre','id_genre')->result();
-		$data['terdaftar'] = $this->mclp->getData('tb_registrasi','id_registrasi')->result();
+		
+		$where = array(
+			'flg_konfirmasi' => 1,
+			'indiefestKe' => $data['settings']->indiefestKe
+		);
+		
+		$data['terdaftar'] = $this->mclp->getWhere('tb_registrasi',$where)->result();
 		$this->load->view('pendaftaran',$data);
 	}
 
@@ -157,9 +170,11 @@ class Home extends CI_Controller {
 	
 		if ($response->success) {
 			if($this->upload->do_upload('file_poster')){
+				$settings = $this->mclp->getData('settings','id_settings')->row();
 				$data = array(
+					'indiefestKe' => $settings->indiefestKe,
 					'nama_perwakilan' => $this->input->post('nama_pewakilan'),
-					'asal_sekolah' => $this->input->post('asal_sekolah'),
+					'asal_sekolah' => strtoupper($this->input->post('asal_sekolah')),
 					'email' => $this->input->post('email'),
 					'judul_film' => $this->input->post('judul_film'),
 					'durasi' => $this->input->post('durasi'),
@@ -171,7 +186,7 @@ class Home extends CI_Controller {
 					'tanggal_registrasi' => date('Y-m-d H:i:s'),
 					'no_tlp' => $this->input->post('no_tlp'),
 				);
-
+				
 				$this->mclp->inputdata('tb_registrasi',$data);
 				$this->session->set_flashdata('pesan','registrasi anda telah berhasil pihak kami akan segera mengonfirmasi pastikan no hp anda aktiv');
 				redirect(base_url('home/success'),'refresh');
@@ -186,6 +201,23 @@ class Home extends CI_Controller {
 		}	
 		
 	}
+
+	public function autokomplitSekolah()
+	{
+		$keyword = $this->input->post('keyword');
+		if (!$keyword) {
+			echo "not access";
+			return;
+		}
+		$dataSekolah = $this->db->distinct()
+														->select('asal_sekolah')
+														->from('tb_registrasi')
+														->like('asal_sekolah',$keyword)
+														->get()
+														->result();
+		echo json_encode($dataSekolah);
+	}
+
 
 	public function success()
 	{

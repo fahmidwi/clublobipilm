@@ -39,20 +39,27 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php $no=1;foreach ($user as $res) { ?>
                       <tr>
-                        <td>1</td>
-                        <td>33</td>
-                        <td>33</td>
-                        <td>33</td>
-                        <td>2008/11/28</td>
-                        <td>2008/11/28</td>
+                        <td><?php echo $no; ?></td>
+                        <td><?php echo $res->nama; ?></td>
+                        <td><?php echo $res->email; ?></td>
+                        <td><?php echo $res->username; ?></td>
                         <td>
-                          <a href="#" class="badge badge-warning" data-toggle="modal"
-                            data-target=".bd-example-modal-lg">Detail</a>
-                          <a href="#" class="badge badge-primary">Edit</a>
-                          <a href="#" class="badge badge-danger">Hapus</a>
+                          <?php echo ($res->level_akses==0)?'<sl style="color:#52b7ff;">ADMIN</sl>' : '<sl style="color:grey;">ANGGOTA</sl>' ; ?>
+                        </td>
+                        <td>
+                          <?php if ($res->level_akses==0) { ?>
+                          <p>-</p>
+                          <?php } else { ?>
+                          <a href="<?php echo base_url('admin/User/ChangeToAdmin/'.$res->id_user) ?>"
+                            onClick="return confirm('Jadikan user ini ADMIN?')" class="badge badge-primary">jadikan
+                            admin</a>
+                          <a href="<?php echo base_url('admin/User/hapusAnggota/'.$res->id_user) ?>" onClick="return confirm('Hapus anggota ini?')" class="badge badge-danger">Blokir</a>
+                          <?php }?>
                         </td>
                       </tr>
+                      <?php $no++; } ?>
                     </tbody>
                   </table>
                 </div>
@@ -60,34 +67,6 @@
             </div>
           </div>
           <!-- Dark table end -->
-          <!-- Large modal start -->
-          <div class="col-lg-6 mt-5">
-            <div class="card-body">
-              <!-- Large modal -->
-              <div class="modal fade bd-example-modal-lg">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Detail Data Perserta</h5>
-                      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius voluptates explicabo natus
-                        nobis, aperiam placeat aliquid nisi ut exercitationem dolor quisquam nam tempora voluptatem.
-                        Unde dignissimos est aliquid quidem porro dolorum ipsam suscipit animi quas, debitis ea, sunt
-                        quo distinctio doloribus eveniet dolores tempore delectus voluptatum! Possimus earum asperiores
-                        animi.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Large modal modal end -->
         </div>
       </div>
     </div>
@@ -101,4 +80,5 @@
 
 </body>
 <?php $this->load->view('include/js_backend'); ?>
+
 </html>

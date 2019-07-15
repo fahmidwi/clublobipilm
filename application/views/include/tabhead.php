@@ -11,7 +11,7 @@
         </div>
         <div class="col-sm-6 clearfix">
             <div class="user-profile pull-right">
-                <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('nama') ?><i class="fa fa-angle-down"></i></h4>
+                <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('nama').' ('.$this->session->userdata('status_akses').')' ?><i class="fa fa-angle-down"></i></h4>
                 <div class="dropdown-menu">
                     <!-- <a class="dropdown-item" href="#">Message</a>
                     <a class="dropdown-item" href="#">Settings</a> -->

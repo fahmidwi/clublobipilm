@@ -53,10 +53,12 @@
                           ?>
                           <a href="<?php echo base_url('home/dk/'.$res->id_karya.'/'.$uri) ?>" target="_blank"
                             class="badge badge-warning">Detail</a>
-                          <a href="<?php echo base_url('admin/Karya/ubahData/'.$res->id_karya) ?>" class="badge badge-primary">Edit</a>
-                          <a href="<?php echo base_url('admin/Karya/delete/'.$res->id_karya) ?>"
-                            onClick="return confirm('Aksi ini akan menghapus data secara permanen, hapus?');"
-                            class="badge badge-danger">Hapus</a>
+                          <?php if ($res->id_user == $this->session->userdata('id_user')) { ?>
+                            <a href="<?php echo base_url('admin/Karya/ubahData/'.$res->id_karya) ?>" class="badge badge-primary">Edit</a>
+                            <a href="<?php echo base_url('admin/Karya/delete/'.$res->id_karya) ?>"
+                              onClick="return confirm('Aksi ini akan menghapus data secara permanen, hapus?');"
+                              class="badge badge-danger">Hapus</a>
+                          <?php } ?>
                         </td>
                       </tr>
                       <?php $no++;} ?>

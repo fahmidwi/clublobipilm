@@ -15,8 +15,8 @@
               <h3><span><?php echo $res->desk; ?></span></h3>
               <br>
               <div class="">
-                <a class="btn btn-theme btn-sm btn-min-block" href="#about">Tentang Kami</a>
-                <a class="btn btn-theme btn-sm btn-min-block" href="#works">Karya</a></div>
+                <a class="btn btn-theme btn-sm btn-min-block" href="#tentangkami">Tentang Kami</a>
+                <a class="btn btn-theme btn-sm btn-min-block" href="#hasilkarya">Karya</a></div>
             </div>
           </div>
           <!-- /header-text -->

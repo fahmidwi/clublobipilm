@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set("Asia/Jakarta");
 Class Model_clp extends CI_model{
     
 
@@ -16,6 +18,12 @@ Class Model_clp extends CI_model{
     public function inputdata($table,$data)
     {
         return $this->db->insert($table,$data);
+    }
+
+    public function inputAnggota($data)
+    {
+        $this->db->insert('tb_anggota',$data);
+        return $this->db->insert_id();
     }
 
     public function updateData($table,$data,$where)

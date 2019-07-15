@@ -32,12 +32,21 @@ class Login extends CI_Controller {
 
         if ($dataLog->num_rows() == 1) {
             $dataSess = $dataLog->row();
+
+            if ($dataSess->level_akses == 0) {
+                $level_akses = 'ADMIN';
+            } else {
+                $level_akses = 'ANGGOTA';
+            }
+            
+
             $dataSess = array(
                 'id_user' => $dataSess->id_user, 
                 'nama' => $dataSess->nama, 
                 'email' => $dataSess->email,
                 'username' => $dataSess->username, 
                 'password' => $dataSess->password, 
+                'status_akses' => $level_akses,
                 'level_akses' => $dataSess->level_akses,
                 'status_log' => 'on'
             );
