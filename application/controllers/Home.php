@@ -223,4 +223,8 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('terimakasih.php');
 	}
+	public function gallery()
+	{
+		$this->load->view('gallery');
+	}
 }
