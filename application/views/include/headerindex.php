@@ -145,8 +145,8 @@
               <li><a style="color: #fff;" href="#tentangkami">Tentang Kami</a></li>
               <li><a style="color: #fff;" href="#programkerja">Program Kerja</a></li>
               <li><a style="color: #fff;" href="#hasilkarya">Hasil karya</a></li>
-              <li><a style="color: #fff;" href="">Keanggotaan</a></li>
-              <li><a style="color: #fff;" href="">Gallery</a></li>
+              <li><a style="color: #fff;" href="<?php echo base_url('home/keanggotaan') ?>">Keanggotaan</a></li>
+              <li><a style="color: #fff;" href="<?php echo base_url('home/gallery') ?>">Gallery</a></li>
               <li><a style="color: #fff;" href="<?php echo base_url('home/pendaftaran') ?>" data-toggle="tooltip"
                   data-placement="bottom" title="Pendaftaran Indiefest">Pendaftaran</a></li>
               <li><a style="color: #fff;" href="#hubkami">Hubungi Kami</a></li>

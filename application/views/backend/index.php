@@ -24,49 +24,41 @@
             <div class="col-md-4">
               <div class="single-report mb-xs-30">
                 <div class="s-report-inner pr--20 pt--30 mb-3">
-                  <div class="icon"><i class="fa fa-btc"></i></div>
+                  <div class="icon"><i class="fa fa-user"></i></div>
                   <div class="s-report-title d-flex justify-content-between">
-                    <h4 class="header-title mb-0">Bitcoin</h4>
-                    <p>24 H</p>
+                    <h4 class="header-title mb-0">Calon peserta indifest </h4>
+                    <p><?php echo date('Y') ?></p>
                   </div>
                   <div class="d-flex justify-content-between pb-2">
-                    <h2>$ 4567809,987</h2>
-                    <span>- 45.87</span>
+                    <h2><?php echo $jumPeserta ?></h2>
                   </div>
                 </div>
-                <canvas id="coin_sales1" height="100"></canvas>
               </div>
             </div>
             <div class="col-md-4">
               <div class="single-report mb-xs-30">
                 <div class="s-report-inner pr--20 pt--30 mb-3">
-                  <div class="icon"><i class="fa fa-btc"></i></div>
+                  <div class="icon"><i class="fa fa-user"></i></div>
                   <div class="s-report-title d-flex justify-content-between">
-                    <h4 class="header-title mb-0">Bitcoin Dash</h4>
-                    <p>24 H</p>
+                    <h4 class="header-title mb-0">Anggota</h4>
                   </div>
                   <div class="d-flex justify-content-between pb-2">
-                    <h2>$ 4567809,987</h2>
-                    <span>- 45.87</span>
+                    <h2><?php echo $jumAnggota ?></h2>
                   </div>
                 </div>
-                <canvas id="coin_sales2" height="100"></canvas>
               </div>
             </div>
             <div class="col-md-4">
               <div class="single-report">
                 <div class="s-report-inner pr--20 pt--30 mb-3">
-                  <div class="icon"><i class="fa fa-eur"></i></div>
+                  <div class="icon"><i class="fa fa-film"></i></div>
                   <div class="s-report-title d-flex justify-content-between">
-                    <h4 class="header-title mb-0">Euthorium</h4>
-                    <p>24 H</p>
+                    <h4 class="header-title mb-0">Karya</h4>
                   </div>
                   <div class="d-flex justify-content-between pb-2">
-                    <h2>$ 4567809,987</h2>
-                    <span>- 45.87</span>
+                    <h2><?php echo $jumKarya ?></h2>
                   </div>
                 </div>
-                <canvas id="coin_sales3" height="100"></canvas>
               </div>
             </div>
           </div>

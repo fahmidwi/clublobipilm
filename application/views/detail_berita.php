@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-md-8">
             <h3><b><?php echo $detail->judul_berita; ?></b></h3>
-            <span class="mdi mdi-grease-pencil"></span><small><i><b>Oleh : <?php echo $detail->nama; ?>. 18 Mei 2018, dilihat <?php echo $detail->view; ?> kali</b></i></small><br>
+            <span class="mdi mdi-grease-pencil"></span><small><i><b>Oleh : <?php echo $detail->nama; ?>. <?php echo changeDate($detail->create_date); ?>, dilihat <?php echo $detail->view; ?> kali</b></i></small><br>
             <i><b>Sumber : <?php if($detail->sumber == ''){echo "-";}else{echo"<a href='$detail->sumber' target='_blank'>$detail->sumber</a>";} ?></b></i><br><br>
             <img src="<?php echo base_url('assets/frontend/img/berita/'.$detail->gambar); ?>" width="100%"><br><br>
             <p><?php echo $detail->isi_berita ?></p>
@@ -25,7 +25,7 @@
                 <a href="#" style="color: #c0392b">
                   <h6 style="margin-top: 3%;"><b><?php echo $res->judul_berita ?></b></h6>
                   <div class="col-md-12" style="margin-top: -5%;">
-                    <i class="mdi mdi-calendar-text" ></i><i>17 Januari 2019</i>
+                    <i class="mdi mdi-calendar-text" ></i><i><?php echo changeDate($detail->create_date); ?></i>
                     <?php 
                       $judul = strtolower($res->judul_berita);
                       $uri = str_replace(" ","-",$judul);

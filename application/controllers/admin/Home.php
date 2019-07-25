@@ -15,6 +15,13 @@ class Home extends CI_Controller
     {
         if ($this->session->userdata('status_log')) {
             $data['tab'] = '';
+            $data['jumPeserta'] = $this->db->select('*')
+                                        ->from('tb_registrasi')
+                                        ->like('tanggal_registrasi',date('Y'))
+                                        ->get()
+                                        ->num_rows();
+            $data['jumAnggota'] = $this->mdclp->getData('tb_anggota','id_anggota')->num_rows();
+            $data['jumKarya'] = $this->mdclp->getData('tb_karya','id_karya')->num_rows();
             $this->load->view('backend/index',$data);
         } else {
             redirect('admin/login', 'refresh');
@@ -233,7 +240,7 @@ class Home extends CI_Controller
             $data['tab'] = '
 					<li><span>Karya Anggota</span></li>
 			';
-    		$data['karya'] = $this->mclp->getAllKarya(null,null)->result();
+    		$data['karya'] = $this->mclp->getAllKarya(null,null,null)->result();
             $this->load->view('backend/data/data_karyaanggota',$data);
         } else {
             redirect('admin/login', 'refresh');

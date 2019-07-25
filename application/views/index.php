@@ -111,7 +111,7 @@
               <a href="<?php echo base_url('home/db/'.$res->id_berita.'/'.$uri); ?>" style="color: #c0392b">
                 <h6 style="margin-top: 3%;"><b><?php echo $res->judul_berita; ?></b></h6>
                 <div class="col-md-12" style="margin-top: -5%;">
-                  <i class="mdi mdi-calendar-text"></i><i>17 Januari 2019</i>
+                  <i class="mdi mdi-calendar-text"></i><i><?php echo changeDate($res->create_date); ?></i>
                   <p><?php  echo substr($res->isi_berita,0,100).'...'; ?></p>
                 </div>
               </a>

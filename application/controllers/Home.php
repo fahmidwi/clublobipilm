@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Model_clp', 'mclp');
+		$this->load->model('Model_dashClp', 'mdclp');
 	}
 
 	public function index()
@@ -15,7 +16,7 @@ class Home extends CI_Controller {
 		$data['proker'] = $this->mclp->getData('tb_proker','id_proker')->result();
 		$data['berita'] = $this->mclp->getBeritaAtHome();
 		$data['favberita'] = $this->mclp->getBeritaFavorite()->result();
-		$data['karya'] = $this->mclp->getAllKarya(null,null)->result();
+		$data['karya'] = $this->mclp->getAllKarya(null,null,null)->result();
 		$data['sejarah'] = $this->db->like('tb_artikel_statis.title','Sejarah Club Lobi Pilm')->get('tb_artikel_statis')->row();
 		$this->load->view('index',$data);
 	}
@@ -33,12 +34,60 @@ class Home extends CI_Controller {
 	}
 	public function karya()
 	{
+		$genre;
+		$tahun_upload;
+		$starpage;
+		
 		$genre = $this->input->get('genre');
 		$tahun_upload = $this->input->get('tahun');
+		$starpage = $this->input->get('next');
+
+		if ($starpage == "") {
+			$starpage = 0;
+		}else{
+			$starpage = $starpage;
+		}
+
+		if ($genre == "") {
+			$genre = 'SEMUA';
+		}else{
+			$genre = $genre;
+		}
+
+		if ($tahun_upload == "") {
+			$tahun_upload = date('Y');
+		}else{
+			$tahun_upload = $tahun_upload;
+		}
+
 		$data['tag_genre'] = $genre;
 		$data['tag_tahun_upload'] = $tahun_upload;
-		$data['karya'] = $this->mclp->getAllKarya($genre,$tahun_upload)->result();
+		$data['karya'] = $this->mclp->getAllKarya($genre,$tahun_upload,$starpage)->result();
 		$data['genre'] = $this->mclp->getData('tb_genre','id_genre')->result();
+
+		$totaldata = count($this->mclp->getData('tb_karya','id_karya')->result());
+
+		$nextpage = $starpage + 12;
+		$prevpage = $starpage - 12;
+
+
+		$linkprev = base_url('Home/karya?next='.$prevpage.'&genre='.$genre.'&tahun='.$tahun_upload);
+		$linknext = base_url('Home/karya?next='.$nextpage.'&genre='.$genre.'&tahun='.$tahun_upload);
+		if($prevpage >= 0){
+			$data['prev'] = "<li class='page-item'><a class='page-link' href='".$linkprev."'>&laquo;sebelumnya </a></li>";
+		}else{
+			$data['prev'] = "";
+		}
+
+		if ($nextpage >= $totaldata) {
+			$data['next'] = "";
+		}else{
+			$data['next'] = "<li class='page-item'><a class='page-link' href='".$linknext."'>Selanjutnya &raquo;</a></li>";
+		}
+		// echo $starpage.'<br>';
+		// echo $tahun_upload.'<br>';
+		// echo $genre.'<br>';
+		// print_r($data['karya']);die();
 		$this->load->view('karya',$data);
 	}
 	public function dk($id,$uri)
@@ -55,8 +104,13 @@ class Home extends CI_Controller {
 									->result();
 		$this->load->view('tentangkami',$data);
 	}
-	public function berita($startpage)
+	public function berita()
 	{
+		$startpage = $this->uri->segment(3);
+		if ($startpage == "") {
+			echo "not falid url";
+			return;
+		}
 		$data['berita'] = $this->mclp->getBeritaAll(3,$startpage)->result();
 		$data['favberita'] = $this->mclp->getBeritaFavorite()->result();
 
@@ -225,6 +279,30 @@ class Home extends CI_Controller {
 	}
 	public function gallery()
 	{
-		$this->load->view('gallery');
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
+		$data['gallery'] = $this->db->select('tb_gallery.*,tb_proker.judul')
+																->from('tb_gallery')
+																->join('tb_proker','tb_gallery.id_proker = tb_proker.id_proker')
+																->order_by('tb_proker.id_proker','DESC')
+																->get()
+																->result();
+		$this->load->view('gallery',$data);
+	}
+
+	public function keanggotaan()
+	{
+		$q = $this->input->get('q');
+
+		if ($q != '') {
+			$data['anggota'] = $this->mclp->dataAnggota($q)->result();
+		}else{
+			$data['anggota'] = $this->mclp->dataAnggota(null)->result();
+		}
+
+		$this->load->view('keanggotaan',$data);
 	}
 }

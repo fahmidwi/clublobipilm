@@ -61,7 +61,7 @@
                 <li><a style="color: #fff;" href="<?php echo base_url('home') ?>">Home</a></li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/tentangKami') ?>">Tentang Kami</a></li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/index/#service') ?>">Program Kerja</a></li>
-                <li><a style="color: #fff;" href="<?php echo base_url('home/karya') ?>">Gallery</a></li>
+                <li><a style="color: #fff;" href="<?php echo base_url('home/gallery') ?>">Gallery</a></li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/karya') ?>">Hasil karya</a></li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/keanggotaan') ?>">Keanggotaan</a></li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/pendaftaran') ?>" data-toggle="tooltip" data-placement="bottom" title="Pendaftaran Indiefest">Pendaftaran</a></li>

@@ -28,7 +28,7 @@
                     <?php echo $dk->sinopsis; ?>
                   </p>
                   <ul>
-                    <li>Tanggal Post : <?php echo $dk->create_date; ?></li>
+                    <li>Tanggal Post : <?php echo changeDate($dk->create_date); ?></li>
                     <li>Admin : <?php echo $dk->nama; ?></li><br>
                     <li>Durasi : <?php echo $dk->durasi; ?></li>
                     <li>Genre : <?php echo $dk->genre; ?></li>

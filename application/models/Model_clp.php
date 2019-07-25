@@ -75,10 +75,11 @@ Class Model_clp extends CI_model{
                  ->get();
     }
 
-    public function getAllKarya($genre,$tahun)
+    public function getAllKarya($genre,$tahun,$starpage)
     {
-        $genre = ($genre!='semua') ? $this->db->like('tb_genre.genre',$genre):null;
+        $genre = ($genre!='SEMUA') ? $this->db->like('tb_genre.genre',$genre):null;
         $tahun = (!empty($tahun)) ? $this->db->like('tb_karya.create_date',$tahun):null;
+        $starpage = (!empty($starpage)) ? $this->db->limit(12,$starpage):null;
         return $this->db->select('tb_karya.*, tb_genre.genre, tb_user.nama')
                         ->from('tb_karya')
                         ->join('tb_genre','tb_karya.id_genre = tb_genre.id_genre')
@@ -98,4 +99,20 @@ Class Model_clp extends CI_model{
                         ->get();
     }
     
+    public function dataAnggota($q)
+    {
+        if($q != ''){
+            $this->db->like('tb_anggota.nama',$q);
+            $this->db->or_like('tb_anggota.npm',$q);
+        }else{
+            null;
+        } 
+
+        return $this->db->select('*')
+                        ->from('tb_anggota')
+                        ->join('tb_user','tb_anggota.id_anggota = tb_user.id_anggota')
+                        ->where(array('tb_user.flg_delete' => 0))
+						->order_by('tb_user.id_user','DESC')
+                        ->get();
+    }
 }

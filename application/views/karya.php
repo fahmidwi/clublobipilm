@@ -27,7 +27,7 @@
                       <div class="form-group">
                         <label>Genre</label>
                         <select class="form-control" name="genre">
-                          <option value="semua">SEMUA</option>
+                          <option value="SEMUA">SEMUA</option>
                           <?php foreach ($genre as $res) { ?>
                           <option value="<?php echo $res->genre?>"><?php echo $res->genre?></option>
                           <?php } ?>
@@ -86,15 +86,13 @@
             </div>
           </div>
           <?php } ?>
-          <?php if (count($karya)==12) { ?>
-          <nav aria-label="...">
-            <ul class="pager">
-              <li><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
+        </div>
+          <nav aria-label="Page navigation example" style="float:right;">
+            <ul class="pagination">
+              <?php echo $prev; ?>
+              <?php echo $next; ?>
             </ul>
           </nav>
-          <?php } ?>
-        </div>
       </div>
     </div>
     </div>
