@@ -7,9 +7,9 @@
   <!-- Section: about -->
   <section id="about" class="home-section color-dark bg-white" style="margin-top: -10%;">
     <div class="container marginbot-50">
-      <div class="row">
+      <div class="row wow fadeIn">
         <div class="col-lg-6 ">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading">
               <h3 style="font-family: lato; font-weight:bold;">
                 <blockquote>PENDAFTARAN INDIEFEST</blockquote>
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="col-lg-6 ">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading">
               <h3 style="font-family: lato; font-weight:bold;">
                 <blockquote>SEKOLAH YANG SUDAH TERDAFTAR</blockquote>
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div class="container" style="margin-top: -5%;">
+    <div class="container wow fadeIn" style="margin-top: -5%;">
       <div class="row" style="margin:1%; margin-top: 2%; ">
         <div class="col-md-6">
           <?php if ($this->session->flashdata('pesan')) { ?>
@@ -102,6 +102,10 @@
               <input type="text" name="link_film" class="form-control" placeholder="Masukan Link Film (Google Drive)"
                 required>
               <p style="color:red;"><i>Link film yang sudah terupload pada google drive anda</i></p>
+            </div>
+            <div class="form-group">
+              <label>Bukti Pembayaran</label>
+              <input type="file" name="bukti_pembayaran" class="form-control" required>
             </div>
             <div class="form-group form-check">
               <input type="checkbox" name="syarat_kentuan" class="form-check-input" id="ceksk">

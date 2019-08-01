@@ -10,7 +10,7 @@
     <div class="container marginbot-50">
       <div class="row">
         <div class="col-lg-12">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading">
               <h3 style="font-family: lato; font-weight:bold;">
                 <blockquote>KARYA DARI ANGGOTA CLP</blockquote>
@@ -19,11 +19,11 @@
           </div>
           <form>
             <div class="row">
-              <div class="col-lg-12 bg-white">
+              <div class="col-lg-12 bg-white wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
                 <label>Filter</label>
                 <form method="GET">
                   <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
                       <div class="form-group">
                         <label>Genre</label>
                         <select class="form-control" name="genre">
@@ -34,7 +34,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
                       <div class="form-group">
                         <label for="exampleInputPassword1">Tahun upload</label>
                         <select class="form-control" name="tahun">
@@ -47,7 +47,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
                       <div class="form-group">
                         <button type="submit" class="btn btn-info" style="margin-top: 11%;">Terapkan</button>
                       </div>
@@ -57,11 +57,11 @@
             </div>
         </div>
         </form>
-        <span class="badge"><?php echo $tag_genre;  ?></span>
-        <span class="badge"><?php echo $tag_tahun_upload;  ?></span>
+        <span class="badge wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s"><?php echo $tag_genre;  ?></span>
+        <span class="badge wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s"><?php echo $tag_tahun_upload;  ?></span>
         <div class="row" style="margin-top: 2%;">
           <?php foreach ($karya as $res) { ?>
-          <div class="col-sm-6 col-md-3">
+          <div class="col-sm-6 col-md-3 wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="thumbnail">
               <?php if ($res->flg_new==0) {?>
               <span class="label label-danger" style="margin-top:-2%;z-index:5;position:absolute;margin:2%;">New</span>

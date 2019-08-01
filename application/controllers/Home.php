@@ -305,4 +305,17 @@ class Home extends CI_Controller {
 
 		$this->load->view('keanggotaan',$data);
 	}
+	
+	public function tidakadafoto()
+	{
+		$this->load->view('tidakadafoto');
+	}
+	public function tidakadakarya()
+	{
+		$this->load->view('tidakadakarya');
+	}
+	public function konfirmasipembayaran()
+	{
+		$this->load->view('konfirmasipembayaran');
+	}
 }

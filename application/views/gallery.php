@@ -6,141 +6,225 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('lib/frontend/css/css//magnific-popup.css');?>">
 <style type="text/css">
-js @media only screen and (max-width: 1168px) {
-  #sudahdaftar {
-    margin-top: 6%;
+ .gallery * {
+  padding: 1%;
+}
+
+.gallery-images {
+  display: grid;
+  grid-gap: 30px 20px;
+  grid-template-columns: auto;
+  grid-auto-flow: dense;
+}
+
+@media (min-width: 600px) and (max-width: 1099px) {
+    .gallery-images {
+      display: grid;
+      grid-gap: 30px 20px;
+      grid-template-columns: repeat(auto-fill,minmax(calc(50% - 20px), 1fr));
+      grid-auto-flow: dense;
   }
+}
 
-  #sinopsis {
-    margin-top: 300%;
+@media (min-width: 1100px) {
+  .gallery-images {
+    display: grid;
+    grid-gap: 30px 20px;
+    grid-template-columns: repeat(auto-fill,minmax(calc(25% - 20px), 1fr));
+    grid-auto-flow: dense;
   }
 }
 
-.gallery-title {
-  font-size: 36px;
-  color: #000;
-  text-align: center;
-  font-weight: 500;
-  margin-bottom: 70px;
-}
-
-.gallery-title:after {
-  content: "";
-  position: absolute;
-  width: 7.5%;
-  left: 46.5%;
-  height: 45px;
-  border-bottom: 1px solid #000;
-}
-
-.filter-button {
-  font-size: 18px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  text-align: center;
-  color: #000;
-  margin-bottom: 30px;
-
-}
-
-.filter-button:hover {
-  font-size: 18px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  text-align: center;
-  color: #ffffff;
-  background-color: #000;
-  transition: 0.3s;
-
-}
-
-.btn-dark:active .filter-button:active {
-  background-color: #000;
-  color: white;
-}
-
-.port-image {
+.gallery-image {
+  display: block;
   width: 100%;
+  grid-column-end: span 1;
+  grid-row-end: span 1;
+  position: relative;
+  transform: scale(1, 1);
+  transition: transform .125s ease;
+  &:hover:not(.gallery-image__preview) {
+    transform: scale(1.02, 1.02);
+  }
 }
 
-.gallery_product {
-  margin-bottom: 30px;
+.gallery-image__crop {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.gallery-image__media {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.gallery-image__caption {
+  display: none;
 }
 
 
-img {
-  height: 200;
+@media (min-width: 600px) and (max-width: 1099px) {
+  .gallery-image__preview {
+    display: block;
+    grid-column-end: span 2;
+    grid-row-end: span 2;
+  }
+}
+
+@media (min-width: 1100px) {
+  .gallery-image__preview {
+    display: block;
+    grid-column-end: span 4;
+    grid-row-end: span 4;
+  }
+}
+
+
+.gallery-image__preview .gallery-image__caption {
+  display: block;
+  font-family: "Inter UI", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 8px 14px;
+  color: white;
+  background: hsla(0, 0%, 20%, .9);
+  text-align: justify;
 }
 </style>
-
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   <!-- Section: about -->
-  <section id="about" class="home-section color-dark bg-white" style="margin-top: -10%;">
-    <div class="container">
-      <div class="row">
-        <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <h1 class="gallery-title">Gallery</h1>
-        </div>
-
-        <div align="center">
-          <button class="btn btn-dark filter-button active" data-filter="all">All</button>
-          <?php foreach ($proker as $res) { 
-              $judul = strtolower(str_replace(' ','-',$res->judul));
-            ?>
-              <button class="btn btn-dark filter-button" data-filter="<?php echo $judul; ?>"><?php echo $res->judul; ?></button>
-          <?php } ?>
-        </div>
-        <br />
-
-        <?php foreach ($gallery as $res) { 
-            $judul = strtolower(str_replace(' ','-',$res->judul));
-        ?>
-        <div class="popup-gallery" id="klikfoto">
-          <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter <?php echo $judul; ?>">
-            <a href="<?php echo base_url('assets/backend/img/gallery/'.$res->gambar) ?>">
-              <img src="<?php echo base_url('assets/backend/img/gallery/'.$res->gambar) ?>" class="img-responsive"></a>
-          </div>
-        </div>
-        <?php } ?>
-        
-
+<section class="gallery" >
+  <center><h2 class="gallery-title wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">Sesuai Proker</h2></center>
+        <!-- <div class="form-group">
+          <label></label>
+          <select class="form-control" name="genre">
+            <?php foreach ($genre as $res) { ?>
+            <option value="<?php echo $res->id_genre?>"><?php echo $res->genre?></option>
+            <?php } ?>
+          </select>
+        </div> -->
+  <div class="gallery-images wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
       </div>
-    </div>
-  </section>
+    </figure>
+    <figure class="gallery-image gallery-image--2x2 loaded">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="Ion accelerators play a strong role in magnetic fusion energy research." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="A system from CSAIL uses EEG brain signals to detect if a person notices robots making an error." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="This student, an Olympic medalist, is developing a device that more precisely measures the curvatures of the blades used for speedskates." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="MIT students have research interests that extend beyond the lab." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="MIT researchers have developed a new way to image proteins and RNA inside neurons of intact brain tissue." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="Recent faculty research topics in mechanical engineering include pattern formation, fluid dynamics, and soft condensed matter." src="https://images.unsplash.com/photo-1476535882942-632ab96c48aa?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=55560b5dbfe4a6edfc93f16ed1063197">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="A graduate student works on robotic systems that are tasked with removing items from bins and placing them into boxes." src="https://images.unsplash.com/photo-1481056447409-db8232bd2321?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=9ba82fa3c8aafa46e184a86824670c72">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image gallery-image--2x2 loaded">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="Ion accelerators play a strong role in magnetic fusion energy research." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="A system from CSAIL uses EEG brain signals to detect if a person notices robots making an error." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="This student, an Olympic medalist, is developing a device that more precisely measures the curvatures of the blades used for speedskates." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="MIT students have research interests that extend beyond the lab." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" src="<?php echo base_url('assets/frontend/img/indiefest.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image gallery-image--2x2 loaded">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="Ion accelerators play a strong role in magnetic fusion energy research." src="<?php echo base_url('assets/frontend/img/indiefest.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="A system from CSAIL uses EEG brain signals to detect if a person notices robots making an error." src="<?php echo base_url('assets/frontend/img/indiefest.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="This student, an Olympic medalist, is developing a device that more precisely measures the curvatures of the blades used for speedskates." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+    <figure class="gallery-image">
+      <div class="gallery-image__crop">
+        <img class="gallery-image__media" alt="MIT students have research interests that extend beyond the lab." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
+      </div>
+    </figure>
+  </div>
+</section>
   <!-- /Section: about -->
   <!-- FOOTER -->
-  <?php $this->load->view('include/footer.php'); ?>
+<?php $this->load->view('include/footer.php'); ?>
   <script src="<?php echo base_url('lib/frontend/js/jquery.magnific-popup.min.js'); ?>"></script>
   <script src="<?php echo base_url('lib/frontend/js/main.js'); ?>"></script>
 
 </body>
 <script type="text/javascript">
-$(document).ready(function() {
-
-  $(".filter-button").click(function() {
-    var value = $(this).attr('data-filter');
-    if (value == "all") {
-      //$('.filter').removeClass('hidden');
-      $('.filter').show('1000');
-    } else {
-      //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-      //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
-      $(".filter").not('.' + value).hide('3000');
-      $('.filter').filter('.' + value).show('3000');
+document.addEventListener('click', function (event) {
+  console.log(event.target.parentElement.parentElement);
+  if (event.target.parentElement.parentElement.matches('.gallery-image__preview')) {
+    event.target.parentElement.parentElement.classList.remove('gallery-image__preview');
+    event.target.parentElement.parentElement.scrollIntoView();
+  } else if (event.target.matches('.gallery-image__media')) {
+    // Remove any existing preview classes
+    var previewing = document.getElementsByClassName('gallery-image__preview');
+    for (el of previewing) {
+      el.classList.remove('gallery-image__preview');
     }
-  });
+        // Preview the clicked figure
+    event.target.parentElement.parentElement.classList.add('gallery-image__preview');
+    event.target.parentElement.parentElement.scrollIntoView();
+    }
+}, false);
 
-  if ($(".filter-button").removeClass("active")) {
-    $(this).removeClass("active");
-  }
-
-  $(this).addClass("active");
-
-  $("#klikfoto").click(function() {
-    $("#navigation").hide();
-  });
-
-});
 </script>
 
 </html>
