@@ -65,7 +65,7 @@
                           <td><?php echo $res->nama ?></td>
                           <td>
                             <img src="<?php echo base_url('assets/backend/img/foto_profile/'.$res->foto_profile) ?>"
-                              class="img-rounded" alt="Cinque Terre" width="60px" height="70px">
+                              class="img-rounded" alt="foto profile" width="60px" height="70px">
                           </td>
                           <td><?php echo $res->npm; ?></td>
                           <td><?php echo $res->angkatan_clp; ?></td>
