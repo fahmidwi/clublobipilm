@@ -46,7 +46,7 @@
         <div class="row">
           <div class="col-md-2">
             <div class="site-logo">
-              <a href="index.html" class="brand"><img style="width:150%; height: 150%; margin-top:-3%; margin-left: -20%" class="img_desktop" src="<?php echo base_url('assets/frontend/img/logoclphead.png') ?>"></img>
+              <a href="<?php echo base_url('home') ?>" class="brand"><img style="width:150%; height: 150%; margin-top:-3%; margin-left: -20%" class="img_desktop" src="<?php echo base_url('assets/frontend/img/logoclphead.png') ?>"></img>
                 <img style="width:80%; height: 80%; margin-top:-4%;" class="img_hp" src="<?php echo base_url('assets/frontend/img/logoclphead.png') ?>"></img></a>
             </div>
           </div>
@@ -61,7 +61,18 @@
                 <li><a style="color: #fff;" href="<?php echo base_url('home') ?>">Home</a></li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/tentangKami') ?>">Tentang Kami</a></li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/index/#service') ?>">Program Kerja</a></li>
-                <li><a style="color: #fff;" href="<?php echo base_url('home/gallery') ?>">Gallery</a></li>
+                <!-- <li><a style="color: #fff;" href="<?php echo base_url('home/gallry') ?>">Gallery</a></li> -->
+                <li class="dropdown">
+                  <a class="dropdown-toggle" style="color: #fff;" data-toggle="dropdown" href="#">Gallery
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Bioskop Mini</a></li>
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Cariti</a></li>
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Indiefest</a></li>
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Latihan Kepemimpinan</a></li>
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Makrab</a></li>
+                  </ul>
+                </li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/karya') ?>">Hasil karya</a></li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/keanggotaan') ?>">Keanggotaan</a></li>
                 <li><a style="color: #fff;" href="<?php echo base_url('home/pendaftaran') ?>" data-toggle="tooltip" data-placement="bottom" title="Pendaftaran Indiefest">Pendaftaran</a></li>

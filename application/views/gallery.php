@@ -98,8 +98,8 @@
 </style>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   <!-- Section: about -->
-<section class="gallery" >
-  <center><h2 class="gallery-title wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">Sesuai Proker</h2></center>
+<section class="gallery">
+  <center><h2 class="gallery-title">Sesuai Proker</h2></center>
         <!-- <div class="form-group">
           <label></label>
           <select class="form-control" name="genre">
@@ -108,7 +108,7 @@
             <?php } ?>
           </select>
         </div> -->
-  <div class="gallery-images wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
+  <div class="gallery-images">
     <figure class="gallery-image">
       <div class="gallery-image__crop">
         <img class="gallery-image__media" src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
