@@ -12,7 +12,7 @@
     <div class="container marginbot-50" style="margin-top: -8%;">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading text-center">
               <h2 class="h-bold">Sejarah Terbentuk</h2>
               <div class="divider-header"></div>
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container wow fadeIn">
       <div class="row">
         <div class="col-md-6">
           <img src="<?php echo base_url('assets/frontend/img/clp.jpg') ?>" alt="" class="img-responsive" />
@@ -41,7 +41,7 @@
     <div class="container marginbot-50" style="margin-top: -8%;">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading text-center">
               <h2 class="h-bold">Program Kerja</h2>
               <div class="divider-header"></div>
@@ -86,7 +86,7 @@
     <div class="container marginbot-50 text-center" style="margin-top: -8%;">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading text-center">
               <h2 class="h-bold">Seputar CLP</h2>
               <div class="divider-header"></div>
@@ -95,7 +95,7 @@
         </div>
       </div>
     </div>
-    <div class="container" style="margin-top: -1%;">
+    <div class="container wow fadeIn" style="margin-top: -1%;">
       <div class="row">
         <div class="col-md-5">
           <div class="section-heading text-center">
@@ -168,7 +168,7 @@
     <div class="container marginbot-50" style="margin-top: -8%;">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading text-center">
               <h2 class="h-bold">Hasil Karya</h2>
               <div class="divider-header"></div>
@@ -208,7 +208,7 @@
     <div class="container marginbot-50" style="margin-top: -8%;">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading text-center">
               <h2 class="h-bold">Hubungi Kami</h2>
               <div class="divider-header"></div>
@@ -218,7 +218,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container wow fadeIn">
       <div class="row marginbot-80">
         <div class="col-md-8 col-md-offset-2">
           <?php echo ($this->session->flashdata('pesan')) ? '<i class="mdi mdi-check"></i><div style="color:blue">'.$this->session->flashdata('pesan').'</div>' : null ; ?>

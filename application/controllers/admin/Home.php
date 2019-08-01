@@ -129,10 +129,43 @@ class Home extends CI_Controller
 
         <p style='font-family: verdana'>
             Hallo <b>".$dataPendaftar->nama_perwakilan." (".$dataPendaftar->asal_sekolah.")</b> selamat karya anda memenuhi Syarat & ketentaun indifest, dengan ini anda telah menjadi peserta indiefest ".$dataPendaftar->indiefestKe.",<br><br>
-            Untuk info lebih lanjut silahkan hubungi nomor Admin 08998779734(Whatsapp chat only).<br>
-            Terima kasih, selamat berkompetisi :).<br>
+            <br>
         </p></center>
-        <br><br><br><br>
+        <p>
+          Silahkan lakukan pembayaran melalui Bank berikut:<br>
+          Bank BCA <br>
+          <b>No Rek : 99999999 </b><br>
+          A/n : Dono
+        </p>
+        <center>
+        <table style='boder:1px solid black;'>
+              <thead>
+                <tr>
+                  <th scope='col'>#</th>
+                  <th scope='col'>Invoice</th>
+                  <th scope='col'>Perihal</th>
+                  <th scope='col'>Biaya Pendaftaran</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope='row'>1</th>
+                  <td>CLP7878</td>
+                  <td>Pembayaran Indiefest</td>
+                  <td>Rp. 125.000</td>
+                </tr>
+              </tbody>
+        </table>
+        </center>   
+            <br>
+            <p>Jika sudah melakukan pembayaran silahkan konfirmasi pembayaran anda melalui <a href=".base_url('home/konfirmasipembayaran').">Halaman Konfirmasi</a>
+            </p>
+            <br>
+            <p>
+                Untuk info lebih lanjut silahkan hubungi nomor Admin 08998779734(Whatsapp chat only).<br>
+                Terima kasih, selamat berkompetisi :).
+            </p>
+        <br>
         <i>regards,</i>
         <p><b>Club Lobi Pilm</b></p>
         <br>

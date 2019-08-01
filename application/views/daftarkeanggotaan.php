@@ -52,6 +52,26 @@
                   <input type="file" class="form-control" name="file" required>
                 </div>
                 <div class="row">
+                  <div class="col-lg-6">
+                    <label for="exampleInputEmail1">Password</label>
+                    <div class="input-group">
+                      <input type="Password" id="password1" class="form-control" placeholder="Masukan Password" name="password" required>
+                      <span class="input-group-btn">
+                        <button class="btn"  type="button"><span class="glyphicon glyphicon-eye-open"></span></button>
+                      </span>
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                  <div class="col-lg-6">
+                    <label for="exampleInputEmail1">Konfirmasi Password</label>
+                    <div class="input-group">
+                      <input type="Password" id="password2" class="form-control" placeholder="Konfirmasi Password" name="password" onchange="cekpass()" required>
+                      <span class="input-group-btn">
+                        <button class="btn" type="button"><span class="glyphicon glyphicon-eye-open"></span></button>
+                      </span>
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div>
+                <!-- <div class="row">
                   <div class="form-group col-md-6">
                     <label for="exampleInputEmail1">Password</label>
                     <input type="Password" id="password1" class="form-control" placeholder="Masukan Password" name="password" required>
@@ -60,7 +80,7 @@
                     <label for="exampleInputEmail1">Konfirmasi Password</label>
                     <input type="Password" id="password2" class="form-control" placeholder="Konfirmasi Password" name="password" onchange="cekpass()" required>
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <label>Angkatan clp</label>
                   <select class="form-control" name="angkatan">

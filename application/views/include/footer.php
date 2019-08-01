@@ -1,28 +1,24 @@
 
-
-  <footer>
-    <div class="container">
+<footer>
+<div class="container"  style="bottom: 0px;">  
       <div class="row">
+        <div class="col-md-12">
+          <p style="color: #fff;"><i class="mdi mdi-gmail"> </i> clublobipilm@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-phone"> </i> 999999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="mdi mdi-home"> </i> Universitas Pakuan Bogor</p >
+        </div>
         <div class="col-md-6 col-md-offset-3">
-
+          <a href="#"><i class="mdi mdi-facebook"></i>&nbsp;</a>
+          <a href="#"><i class="mdi mdi-instagram"></i>&nbsp;</a>
+          <a href="#"><i class="mdi mdi-twitter"></i></a>
+        </div>
+        <br>  
+        <div class="col-md-12">
           <div class="text-center">
-            <a href="#intro" class="totop"><i class="fa fa-angle-up fa-3x"></i></a>
-            <p>&copy; Shuffle Theme - All Rights Reserved</p>
-            <div class="credits">
-              <!--
-                All the links in the footer should remain intact.
-                You can delete the links only if you purchased the pro version.
-                Licensing information: https://bootstrapmade.com/license/
-                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Shuffle
-              -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
+            <p>&copy; 2019 Club Lobi Pilm. All Rights Reseeved</p>
           </div>
         </div>
       </div>
-    </div>
+</div>
   </footer>
-
   <!-- Core JavaScript Files -->
   <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
   <script src="<?php echo base_url('lib/frontend/js/jquery.min.js'); ?>"></script>

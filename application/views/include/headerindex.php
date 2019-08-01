@@ -6,89 +6,6 @@
   }
 }
 
-@media screen and (max-width: 600px) {
-  .img_hp {
-    display: block;
-  }
-
-  .img_desktop {
-    display: none;
-  }
-
-}
-
-* {
-  margin: 0;
-  padding: 0
-}
-
-@keyframes autopopup {
-  from {
-    opacity: 0;
-    margin-top: -200px;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-#close {
-  background-color: rgba(64, 68, 65, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  animation: autopopup 1.5s;
-}
-
-#close:target {
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  transition: all 1s;
-  opacity: 0;
-  visibility: hidden;
-}
-
-@media (min-width: 768px) {
-  .container-popup {
-    width: 70%;
-  }
-}
-
-@media (max-width: 767px) {
-  .container-popup {
-    width: 70%;
-  }
-}
-
-.container-popup {
-  position: relative;
-  margin: 5% auto;
-  padding: 4px 3px;
-  background-color: #e1fff5;
-  color: #333;
-  border-radius: 8px;
-}
-
-.container-popup img {
-  z-index: 12;
-
-  width: 100%
-}
-
-.close {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  background-color: #33898B;
-  padding: 7px 10px;
-  font-size: 15px;
-  text-decoration: none;
-  line-height: 1;
-  color: #fff;
-}
 </style>
 
 <head>
@@ -118,7 +35,25 @@
   <link href="<?php echo base_url('lib/frontend/css/color/default.css');?>" rel="stylesheet">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Welcome</h4>
+            </div>
+            <div class="modal-body">
+                <p><img src="http://mampirlah.com/logo.png"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <!-- Navigation -->
 <div id="navigation" style="background-color: #101010;">
   <nav class="navbar navbar-custom" role="navigation">
@@ -126,7 +61,7 @@
       <div class="row">
         <div class="col-md-2">
           <div class="site-logo">
-            <a href="index.html" class="brand"><img style="width:150%; height: 150%; margin-top:-3%; margin-left: -20%"
+            <a href="<?php echo base_url('home') ?>" class="brand"><img style="width:150%; height: 150%; margin-top:-3%; margin-left: -20%"
                 class="img_desktop" src="<?php echo base_url('assets/frontend/img/logoclphead.png') ?>"></img>
               <img style="width:80%; height: 80%; margin-top:-4%;" class="img_hp"
                 src="<?php echo base_url('assets/frontend/img/logoclphead.png') ?>"></img></a>
@@ -144,9 +79,19 @@
               <li><a style="color: #fff;" href="#intro">Home</a></li>
               <li><a style="color: #fff;" href="#tentangkami">Tentang Kami</a></li>
               <li><a style="color: #fff;" href="#programkerja">Program Kerja</a></li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle" style="color: #fff;" data-toggle="dropdown" href="#">Gallery
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Bioskop Mini</a></li>
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Cariti</a></li>
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Indiefest</a></li>
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Latihan Kepemimpinan</a></li>
+                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Makrab</a></li>
+                  </ul>
+              </li>
               <li><a style="color: #fff;" href="#hasilkarya">Hasil karya</a></li>
               <li><a style="color: #fff;" href="<?php echo base_url('home/keanggotaan') ?>">Keanggotaan</a></li>
-              <li><a style="color: #fff;" href="<?php echo base_url('home/gallery') ?>">Gallery</a></li>
               <li><a style="color: #fff;" href="<?php echo base_url('home/pendaftaran') ?>" data-toggle="tooltip"
                   data-placement="bottom" title="Pendaftaran Indiefest">Pendaftaran</a></li>
               <li><a style="color: #fff;" href="#hubkami">Hubungi Kami</a></li>
@@ -159,3 +104,4 @@
     <!-- /.container -->
   </nav>
 </div>
+  

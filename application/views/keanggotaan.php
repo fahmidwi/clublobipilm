@@ -16,14 +16,14 @@
     <div class="container marginbot-50">
       <div class="row">
         <div class="col-lg-12">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading">
               <h3 style="font-family: lato; font-weight:bold;">
                 <blockquote>Keanggotaan CLP</blockquote>
               </h3>
             </div>
           </div>
-          <div class="row">
+          <div class="row wow fadeIn">
             <div class="col-xs-12 col-md-8"></div>
             <div class="col-xs-12 col-md-4">
             <?php 
@@ -34,8 +34,8 @@
                 $value = $q;
               }
             ?>
-              <form method="GET" action="<?php echo base_url('home/keanggotaan') ?>">
-              <div class="input-group">
+              <form method="GET" action="<?php echo base_url('home/keanggotaan') ?>" >
+              <div class="input-group wow fadeIn">
                 <input type="text" name="q" class="form-control" placeholder="Cari Anggota Berdasarkan Nama / npm" value=<?php echo $value; ?>>
                 <span class="input-group-btn">
                   <button class="btn btn-dark" type="submit">Cari</button>
@@ -44,7 +44,7 @@
               </form>
             </div>
           </div><br>
-          <div class="row">
+          <div class="row wow fadeIn">
             <div class="col-xs-12">
               <div class="tbl">
                 <center>
