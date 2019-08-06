@@ -8,6 +8,7 @@
     <div class="loader"></div>
   </div>
   <!-- preloader area end -->
+  <link rel="stylesheet" href="<?php echo base_url('lib/backend/css/jquery-ui.min.css') ?>">
   <!-- page container area start -->
   <div class="page-container">
     <?php $this->load->view('include/sidebar_backend') ?>
@@ -33,6 +34,15 @@
                 <h4 class="header-title">Data Peserta</h4><br>
                 <a href="<?php echo base_url('admin/home/tambahdata_peserta') ?>" class="badge badge-info">Tambah
                   Data</a>
+                <div class="col-md-4">
+                <div class="form-group">
+                  <label for="example-text-input" class="col-form-label" style="font-weight: bold; margin-top: 9%;">Cetak laporan per tahun</label>
+                  <select class="form-control">
+                    <option>Pilih tahun</option>
+                    <option>2019</option>
+                  </select>
+                </div>
+                </div>
                 <div class="data-tables datatable-dark">
                   <table id="dataTable3" class="text-center"><br>
                     <thead class="text-capitalize">
@@ -154,5 +164,5 @@
 
 </body>
 <?php $this->load->view('include/js_backend'); ?>
-
+<script src="<?php echo base_url('lib/backend/js/jquery-ui.min.js') ?>"></script>
 </html>

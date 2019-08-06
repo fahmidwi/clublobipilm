@@ -25,7 +25,15 @@
               <div class="card-body">
                 <h4 class="header-title">Data Keanggotaan</h4>
                 <a href="<?php echo base_url('admin/home/tambahdata_user') ?>" class="badge badge-info">Tambah Data</a>
-                <br><br>
+                <div class="col-md-4">
+                <div class="form-group">
+                  <label for="example-text-input" class="col-form-label" style="font-weight: bold; margin-top: 9%;">Cetak laporan per tahun</label>
+                  <select class="form-control">
+                    <option>Pilih tahun</option>
+                    <option>2019</option>
+                  </select>
+                </div>
+                </div>
                 <div class="data-tables datatable-dark">
                   <table id="dataTable3" class="text-center">
                     <thead class="text-capitalize">

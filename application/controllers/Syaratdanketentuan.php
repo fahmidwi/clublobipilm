@@ -11,6 +11,6 @@ class Syaratdanketentuan extends CI_Controller {
   
   public function indiefest()
   {
-    echo "Syarat dan ketentuan indiefest";
+		$this->load->view('syaratdanketentuan');
   }
 }

@@ -29,10 +29,10 @@
             <div class="carousel-inner">
               <?php $no=1; foreach ($favberita as $res) { ?>
                 <div class="item <?php if($no == 1){echo 'active';} ?> ?>">
-                <img src="<?php echo base_url('assets/frontend/img/berita/').$res->gambar;?>" alt="this slide">
+                <img src="<?php echo base_url('assets/frontend/img/berita/').$res->gambar;?>" alt="this slide" >
                 <!-- Static Header -->
-                <
-                <div class="header-text hidden-xs" style="margin-top:30%;">
+                
+                <div class="header-text hidden-xs" style="margin-top:30%; background-color: black; opacity: 0.7;">
                   <div class="col-md-12">
                     <?php 
                       $judul = strtolower($res->judul_berita);

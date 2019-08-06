@@ -2,6 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="author" content="fahmidwisyahputra(@dwifhmi), MochFahmi(@fahmidion_)">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('lib/backend/dompdf/autoload.inc.php') ?> ">
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/frontend/img/logoclp.png') ?>">
     <title>Dashboard CLP</title>
     <!-- others css -->

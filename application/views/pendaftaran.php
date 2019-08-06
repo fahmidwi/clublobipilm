@@ -101,7 +101,8 @@
               <label>Masukan Link Google Drive</label>
               <input type="text" name="link_film" class="form-control" placeholder="Masukan Link Film (Google Drive)"
                 required>
-              <p style="color:red;"><i>Link film yang sudah terupload pada google drive anda</i></p>
+              <p style="color:red; margin-top: 2%;"><i>Link folder yang sudah terupload pada google drive kamu, </i><a href="https://drive.google.com/file/d/1-FKKL3dr4iZxv8k_uph9w3wVh27lr83k/view?usp=drivesdk" target="_blank"> Panduan upload folder film</a></p>
+
             </div>
             <div class="form-group">
               <label>Bukti Pembayaran</label>
@@ -111,7 +112,8 @@
               <input type="checkbox" name="syarat_kentuan" class="form-check-input" id="ceksk">
               <label class="form-check-label" for="ceksk">Saya setuju dengan <a
                   href="<?php echo base_url('syaratdanketentuan/indiefest') ?>" target="_blank">Syarat dan
-                  Ketentuan</a></label>
+                  Ketentuan</a></label><br>
+                  <small style="color: red;">Harap dibaca terlebih dahulu</small>
             </div>
             <div class="g-recaptcha" id="captcha" data-sitekey="6LcjjKoUAAAAAP1ieU2BKCHqAB7puERah55AIbCn"></div><br>
             <button type="submit" id="daftar" class="btn btn-skin btn-lg btn-block">DAFTAR</button>
