@@ -10,7 +10,7 @@
     <div class="container marginbot-50">
       <div class="row">
         <div class="col-lg-9">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading">
               <h3 style="font-family: lato; font-weight:bold;"><blockquote><?php echo strtoupper($infoproker->judul); ?></blockquote></h3>
             </div>
@@ -22,14 +22,14 @@
               </a>
             </div>
             <div class="col-md-9">
-              <p>
+              <p style="text-align: justify;">
                 <?php echo $infoproker->program_kerja; ?>
               </p>
             </div>
           </div>
         </div>
         <div class="col-lg-3">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading">
               <h3 style="font-family: lato; font-weight:bold; font-size: 17pt;"><blockquote>Program Kerja</blockquote></h3>
             </div>
