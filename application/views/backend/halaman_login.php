@@ -18,6 +18,7 @@
             <p>Hallo, login untuk masuk ke halaman Dashboard</p>
           </div>
           <div class="login-form-body">
+            <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
             <div class="form-gp">
               <label for="exampleInputEmail1">Username</label>
               <input type="text" id="Username" name="username" required>

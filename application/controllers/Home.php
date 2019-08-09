@@ -12,6 +12,11 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
 		$data['slideshows'] = $this->mclp->getData('tb_slideshows','id_slide')->result();
 		$data['proker'] = $this->mclp->getData('tb_proker','id_proker')->result();
 		$data['berita'] = $this->mclp->getBeritaAtHome();
@@ -23,6 +28,11 @@ class Home extends CI_Controller {
 	
 	public function infoProker($id,$uri)
 	{
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
 		$judul = str_replace('-',' ',$uri);
 		$data['infoproker'] = $this->mclp->getProker($id,$judul)->row();
 		$data['proker'] = $this->mclp->getData('tb_proker','id_proker')->result();
@@ -63,7 +73,10 @@ class Home extends CI_Controller {
 		$data['tag_genre'] = $genre;
 		$data['tag_tahun_upload'] = $tahun_upload;
 		$data['karya'] = $this->mclp->getAllKarya($genre,$tahun_upload,$starpage)->result();
+		$jum = $this->mclp->getAllKarya($genre,$tahun_upload,$starpage)->num_rows();
 		$data['genre'] = $this->mclp->getData('tb_genre','id_genre')->result();
+
+		
 
 		$totaldata = count($this->mclp->getData('tb_karya','id_karya')->result());
 
@@ -88,10 +101,24 @@ class Home extends CI_Controller {
 		// echo $tahun_upload.'<br>';
 		// echo $genre.'<br>';
 		// print_r($data['karya']);die();
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
+		if ($jum==0) {
+			$this->load->view('tidakadakarya',$data);
+			return;
+		}
 		$this->load->view('karya',$data);
 	}
 	public function dk($id,$uri)
 	{
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
 		$this->mclp->updateData('tb_karya',array('flg_new' => 1),array('id_karya' => $id));
 		$judul = str_replace('-',' ',$uri);
 		$data['dk'] = $this->mclp->getDetailKarya($judul,$id)->row();
@@ -99,13 +126,22 @@ class Home extends CI_Controller {
 	}
 	public function tentangKami()
 	{
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
 		$data['sejarah'] = $this->db->like('tb_artikel_statis.title','Sejarah Club Lobi Pilm')->get('tb_artikel_statis')->row();
-		$data['statis'] = $this->mclp->getData('tb_artikel_statis','id_artikel_statis')
-									->result();
+		$data['statis'] = $this->mclp->getData('tb_artikel_statis','id_artikel_statis')->result();
 		$this->load->view('tentangkami',$data);
 	}
 	public function berita()
 	{
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
 		$startpage = $this->uri->segment(3);
 		if ($startpage == "") {
 			echo "not falid url";
@@ -144,6 +180,11 @@ class Home extends CI_Controller {
 	
 	public function db($id_berita,$keyjudul)
 	{
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
 		$getView = $this->mclp->getWhere('tb_berita',array('id_berita' => $id_berita))->row();
 		$viewNew = $getView->view + 1;
 		$this->mclp->updateData('tb_berita',array('view' => $viewNew),array('id_berita' => $id_berita));
@@ -184,6 +225,11 @@ class Home extends CI_Controller {
 
 	public function pendaftaran()
 	{
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
 		$data['settings'] = $this->mclp->getData('settings','id_settings')->row();
 		// if ($data['settings']->bukaDaftar == date('Y-m-d')) {
 		// 	echo "Ya buka";
@@ -242,7 +288,7 @@ class Home extends CI_Controller {
 				);
 				
 				$this->mclp->inputdata('tb_registrasi',$data);
-				$this->session->set_flashdata('pesan','registrasi anda telah berhasil pihak kami akan segera mengonfirmasi pastikan no hp anda aktiv');
+				$this->session->set_flashdata('status','true');
 				redirect(base_url('home/success'),'refresh');
 			}else{
 				echo json_encode(array('msg' => 'gagal upload'));
@@ -258,7 +304,7 @@ class Home extends CI_Controller {
 
 	public function autokomplitSekolah()
 	{
-		$keyword = $this->input->post('keyword');
+		$keyword = $this->uri->segment(3);
 		if (!$keyword) {
 			echo "not access";
 			return;
@@ -269,32 +315,52 @@ class Home extends CI_Controller {
 														->like('asal_sekolah',$keyword)
 														->get()
 														->result();
-		echo json_encode($dataSekolah);
+
+		$data = array(
+			'dataSekolah' => $dataSekolah
+		);
+		echo json_encode($data);
 	}
 
 
 	public function success()
 	{
-		$this->load->view('terimakasih.php');
+		if ($this->session->flashdata('status')) {
+			$this->load->view('terimakasih.php');
+    }else{
+      redirect('home/pendaftaran');
+    }
 	}
 	public function gallery()
+	{
+		$id_proker = $this->uri->segment(3);
+		if (!$id_proker) {
+			echo 'not found';
+			return;
+		}
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
+
+		$jum = $this->mclp->getWhere('tb_gallery',array('id_proker' => $id_proker))->num_rows();
+		if ($jum==0) {
+			$this->load->view('tidakadafoto',$data);
+			return;
+		}
+		$data['gallery'] = $this->mclp->getWhere('tb_gallery',array('id_proker' => $id_proker))->result();
+		$data['judul'] = $this->mclp->getWhere('tb_proker',array('id_proker' => $id_proker))->row();
+		$this->load->view('gallery',$data);
+	}
+
+	public function keanggotaan()
 	{
 		$data['proker'] = $this->db->select('id_proker,judul')
 															 ->from('tb_proker')
 															 ->order_by('id_proker','DESC')
 															 ->get()
 															 ->result();
-		$data['gallery'] = $this->db->select('tb_gallery.*,tb_proker.judul')
-																->from('tb_gallery')
-																->join('tb_proker','tb_gallery.id_proker = tb_proker.id_proker')
-																->order_by('tb_proker.id_proker','DESC')
-																->get()
-																->result();
-		$this->load->view('gallery',$data);
-	}
-
-	public function keanggotaan()
-	{
 		$q = $this->input->get('q');
 
 		if ($q != '') {
@@ -305,17 +371,78 @@ class Home extends CI_Controller {
 
 		$this->load->view('keanggotaan',$data);
 	}
+
+	public function checkInvoice()
+	{
+		$codeInvoice = $this->uri->segment(3);
+		if (!$codeInvoice) {
+			echo "cannot for this!";
+			return;
+		}
+		$data = $this->db->select('*')
+											->from('tb_registrasi')
+											->join('tb_genre','tb_registrasi.id_genre = tb_genre.id_genre')
+											->join('invoice','tb_registrasi.id_registrasi = invoice.id_registrasi')
+											->where(array('code_invoice' => $codeInvoice))
+											->get();
+
+		if ($data->num_rows() == 0) {
+			echo json_encode(array('not_found' => true));
+		}else{
+			echo json_encode(array('found' => true,'dataInvoice' => $data->row()));
+		}
+	}
+
+	public function uploadBuktiPembayaran()
+	{
+		$file 			= $_FILES['file_bukti']['name'];
+		$pisah 			= explode(".",$file);
+		$ext 			= end($pisah);
+		$rename 		= date("YmdHis");
+		$nama_file 		= $rename.".".$ext;
+
+		$config['upload_path']	 = './assets/backend/img/bukti_pembayaran';
+		$config['allowed_types'] = 'jpg|jpeg|png';
+		$config['file_name']  	 = 'BUKTI_INV_'.$nama_file;
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+
+		$scret_key = '6LcjjKoUAAAAAOLRGjUH3tksCAsByqha7YapUV5m';
+		$recaptchaResponse = $this->input->post('g-recaptcha-response');
+		$verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$scret_key.'&response='.$recaptchaResponse);
+		$response = json_decode($verify);
 	
-	public function tidakadafoto()
-	{
-		$this->load->view('tidakadafoto');
+		if ($response->success) {
+			if($this->upload->do_upload('file_bukti')){
+				$data = array(
+					'bukti_pembayaran' => $config['file_name'],
+					'tanggal_upload_bukti' => date('Y-m-d H:i:s'),
+					'status_bukti' => 1
+				);
+
+				$this->mclp->updateData('invoice',$data,array('id_invoice' => $this->input->post('idv')));
+				$this->session->set_flashdata('confirm_success',' <strong>SELAMAT!</strong> Konfirmasi pembayaran kamu berhasil. Silahkan tunggu kami akan memberi
+				konfirmasi lewat E-mail (kotak masuk/spam).');
+				redirect(base_url('home/konfirmasipembayaran'),'refresh');
+			}else{
+				echo json_encode(array('msg' => 'gagal upload'));
+				die();
+			}
+		}else{
+			echo "<pre>";
+			print_r($response);
+			echo "<pre>";
+		}
 	}
-	public function tidakadakarya()
-	{
-		$this->load->view('tidakadakarya');
-	}
+
 	public function konfirmasipembayaran()
 	{
-		$this->load->view('konfirmasipembayaran');
+		$data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
+		$this->load->view('konfirmasipembayaran',$data);
 	}
 }

@@ -6,6 +6,16 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .img_hp {
+    display: block;
+  }
+
+  .img_desktop {
+    display: none;
+  }
+
+}
 </style>
 
 <head>
@@ -36,23 +46,23 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+  <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Welcome</h4>
-            </div>
-            <div class="modal-body">
-                <p><img src="http://mampirlah.com/logo.png"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Welcome</h4>
+      </div>
+      <div class="modal-body">
+        <p><img src="http://mampirlah.com/logo.png"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+      </div>
     </div>
+
+  </div>
 </div>
 <!-- Navigation -->
 <div id="navigation" style="background-color: #101010;">
@@ -61,8 +71,9 @@
       <div class="row">
         <div class="col-md-2">
           <div class="site-logo">
-            <a href="<?php echo base_url('home') ?>" class="brand"><img style="width:150%; height: 150%; margin-top:-3%; margin-left: -20%"
-                class="img_desktop" src="<?php echo base_url('assets/frontend/img/logoclphead.png') ?>"></img>
+            <a href="<?php echo base_url('home') ?>" class="brand"><img
+                style="width:150%; height: 150%; margin-top:-3%; margin-left: -20%" class="img_desktop"
+                src="<?php echo base_url('assets/frontend/img/logoclphead.png') ?>"></img>
               <img style="width:80%; height: 80%; margin-top:-4%;" class="img_hp"
                 src="<?php echo base_url('assets/frontend/img/logoclphead.png') ?>"></img></a>
           </div>
@@ -80,15 +91,14 @@
               <li><a style="color: #fff;" href="#tentangkami">Tentang Kami</a></li>
               <li><a style="color: #fff;" href="#programkerja">Program Kerja</a></li>
               <li class="dropdown">
-                  <a class="dropdown-toggle" style="color: #fff;" data-toggle="dropdown" href="#">Gallery
+                <a class="dropdown-toggle" style="color: #fff;" data-toggle="dropdown" href="#">Gallery
                   <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Bioskop Mini</a></li>
-                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Cariti</a></li>
-                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Indiefest</a></li>
-                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Latihan Kepemimpinan</a></li>
-                    <li><a style="color: #000;" href="<?php echo base_url('home/gallery') ?>">Makrab</a></li>
-                  </ul>
+                <ul class="dropdown-menu">
+                  <?php foreach ($proker as $res) { ?>
+                  <li><a style="color: #000;"
+                      href="<?php echo base_url('home/gallery/'.$res->id_proker) ?>"><?php echo $res->judul ?></a></li>
+                  <?php } ?>
+                </ul>
               </li>
               <li><a style="color: #fff;" href="#hasilkarya">Hasil karya</a></li>
               <li><a style="color: #fff;" href="<?php echo base_url('home/keanggotaan') ?>">Keanggotaan</a></li>
@@ -104,4 +114,3 @@
     <!-- /.container -->
   </nav>
 </div>
-  

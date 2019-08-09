@@ -12,7 +12,12 @@ class Pendaftaran extends CI_Controller {
   public function Anggota($params)
   {
     if ($params=='clp') {
-	  	$this->load->view('daftarkeanggotaan.php');
+      $data['proker'] = $this->db->select('id_proker,judul')
+															 ->from('tb_proker')
+															 ->order_by('id_proker','DESC')
+															 ->get()
+															 ->result();
+	  	$this->load->view('daftarkeanggotaan.php',$data);
     }
   }
   
@@ -42,11 +47,8 @@ class Pendaftaran extends CI_Controller {
 
         $angkatan = $this->input->post('angkatan');
         $npm = $this->input->post('npm');
-        $revNpm = strrev($npm);
-        $revnpm5digit = substr($revNpm,0,5);
-        $npm5digit = strrev($revnpm5digit);
-
-        $code_clp = 'CLP'.$angkatan.$npm5digit;
+  
+        $code_clp = $this->createCode($npm,$angkatan);//call fungsi createCode
 
         $dataAnggota = array(
           'foto_profile' => $data['file_name'], 
@@ -59,10 +61,12 @@ class Pendaftaran extends CI_Controller {
     
         $idAnggota = $this->mclp->inputAnggota($dataAnggota);
 
+        $username = $this->createUsername($angkatan);//call fungsi createUsername
+
         $dataUser = array(
           'nama' => $this->input->post('nama'),
           'email' => $this->input->post('email'),
-          'username' => $npm,
+          'username' => $username,
           'password' => md5($this->input->post('password')),
           'level_akses' => '1',
           'id_anggota' => $idAnggota
@@ -82,10 +86,11 @@ class Pendaftaran extends CI_Controller {
 
           <p style='font-family: verdana'>
               Hallo <b>".$this->input->post('nama')."</b> selamat anda terdaftar didalam data Keanggotaan Club Lobi Pilm<br><br>
-              Code Anggota : ".$code_clp."<br>
-              Username : ".$npm."<br>
+              Username : ".$username."<br>
               password : ".$this->input->post('password')."<br>
-              Terima kasih atas kerja sama nya.<br>
+              Code Anggota : ".$code_clp."( bisa untuk alternatif password anda )<br><br><br>
+              anda dapat mengakses halaman anggota, dengan login pada <a href=".base_url('admin/login').">halaman admin (".base_url('admin/login').")</a>
+              <br><br>Terima kasih atas kerja sama nya.<br>
           </p></center>
           <br><br><br><br>
           <i>regards,</i>
@@ -98,6 +103,7 @@ class Pendaftaran extends CI_Controller {
           </div>
           ";
           $this->sendEmail($toemail,$subject,$message);
+          $this->session->set_flashdata('status','true');
           redirect('pendaftaran/success');
         } else {
           echo 'GAGAL MELAKUKAN REGISTRASI <a href="'.base_url("pendaftaran/anggota/clp").'">ULANGI</a>';
@@ -110,6 +116,47 @@ class Pendaftaran extends CI_Controller {
     }
   }
 
+  public function createCode($npm,$angkatan)
+  {
+    $code_clp;
+
+    $revNpm = strrev($npm);
+    $revnpm5digit = substr($revNpm,0,5);
+    $npm5digit = strrev($revnpm5digit);
+    $code_clp = 'CLP'.$angkatan.$npm5digit;
+    
+    return $code_clp;
+  }
+
+  //FUNGSI GENERET USERNAME
+  public function createUsername($angkatan)
+  {
+    $username;
+
+    $lastcode = $this->db->select('*')
+                            ->from('tb_user')
+                            ->like('username',$angkatan)
+                            ->order_by('id_user','DESC')
+                            ->get();
+
+    $jum =  $lastcode->num_rows();
+    $data = $lastcode->row();
+
+    if ($jum == 0) {
+      $no = '0001';
+      $username = 'CLP-'.$angkatan.'-'.$no;
+    }else{
+      $datausername = $data->username;
+      $nourutlast = explode('-',$datausername)[2];
+      $format = 10000 + $nourutlast;
+      $newnourut = $format + 1;
+      $nofix = substr($newnourut,1,4);
+      $username = 'CLP-'.$angkatan.'-'.$nofix;
+    }   
+    
+    return $username;
+  }
+  
   public function checkNpm($npm)
   {
     $data = $this->mclp->getWhere('tb_anggota',array('npm' => $npm))->num_rows();
@@ -147,6 +194,10 @@ class Pendaftaran extends CI_Controller {
 
 	public function success()
 	{
-		$this->load->view('thxregisanggota');
-	}
+    if ($this->session->flashdata('status')) {
+      $this->load->view('thxregisanggota');
+    }else{
+      redirect('pendaftaran/anggota/clp');
+    }
+  }
 }

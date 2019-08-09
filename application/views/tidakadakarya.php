@@ -7,7 +7,7 @@
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   <!-- Section: about -->
 <section class="gallery"><br><br><br>
-  <center><h2 class="gallery-title">tidak ada karya...</h2>
+  <center><h2 class="gallery-title">Belum ada karya...</h2>
   <img src="<?php echo base_url('assets/frontend/img/tidakadakarya.png'); ?>" width="25%" height="25%;" style="margin-top: -6%;"></center>
 </section>
 <?php $this->load->view('include/footer.php'); ?>

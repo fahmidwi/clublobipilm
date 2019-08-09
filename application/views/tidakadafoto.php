@@ -99,7 +99,7 @@
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   <!-- Section: about -->
 <section class="gallery"><br><br><br>
-  <center><h2 class="gallery-title">tidak ada foto untuk kategori Indiefest</h2>
+  <center><h2 class="gallery-title">Belum ada gallery</h2>
   <img src="<?php echo base_url('assets/frontend/img/tidakadafoto.png'); ?>" width="25%" height="25%;" style="margin-top: -6%;"></center>
 </section>
   <!-- /Section: about -->

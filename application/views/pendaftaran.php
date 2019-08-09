@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="container wow fadeIn" style="margin-top: -5%;">
-      <div class="row" style="margin:1%; margin-top: 2%; ">
+      <div class="row">
         <div class="col-md-6">
           <?php if ($this->session->flashdata('pesan')) { ?>
           <div class="alert alert-primary" role="alert">
@@ -39,6 +39,8 @@
           </div>
           <?php } ?>
           <form method="post" action="<?php echo base_url('home/prosesPedaftaran'); ?>" enctype="multipart/form-data">
+            <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+              value="<?=$this->security->get_csrf_hash();?>" style="display: none">
             <div class="form-group">
               <label>Indiefest </label>
               <input type="text" name="indiefestKe" class="form-control" value="<?php echo $settings->indiefestKe; ?>"
@@ -102,10 +104,6 @@
               <input type="text" name="link_film" class="form-control" placeholder="Masukan Link Film (Google Drive)"
                 required>
               <p style="color:red;"><i>Link film yang sudah terupload pada google drive anda</i></p>
-            </div>
-            <div class="form-group">
-              <label>Bukti Pembayaran</label>
-              <input type="file" name="bukti_pembayaran" class="form-control" required>
             </div>
             <div class="form-group form-check">
               <input type="checkbox" name="syarat_kentuan" class="form-check-input" id="ceksk">
@@ -218,7 +216,6 @@ $(document).ready(function() {
 
   $('#asalSekolah').keyup(function() {
     const keyword = $(this).val();
-    console.log(keyword)
     if (!keyword) {
       $('#autokomplit').html('');
       $('#autokomplit').hide();
@@ -227,31 +224,30 @@ $(document).ready(function() {
     autokomplitSekolah(keyword)
   })
 
-  $('#autokomplit').on('click','#klikautokomplit',function(){
+  $('#autokomplit').on('click', '#klikautokomplit', function() {
     var data = $(this).attr('data');
     $('#autokomplit').hide();
     $('#asalSekolah').val(data);
   });
-
+ 
   function autokomplitSekolah(keyword) {
     $.ajax({
-      type: 'POST',
-      url: url + '/home/autokomplitSekolah',
-      data: {
-        keyword: keyword
-      },
+      type: 'GET',
+      url: url + 'home/autokomplitSekolah/'+keyword,
       dataType: 'JSON',
       beforeSend: function() {
         $('#autokomplit').show();
         $('#autokomplit').html(". . . . .");
       },
       success: function(res) {
-        if (res.length == 0) {
+        console.log(res.dataSekolah.length)
+        if (res.dataSekolah.length == 0) {
           $('#autokomplit').hide();
           return
         }
+        
         var html = ''
-        $.each(res, function(key, val) {
+        $.each(res.dataSekolah, function(key, val) {
           html += '<a href="javascript:void(0);" id="klikautokomplit" data="' + val.asal_sekolah +
             '"><b>' + val.asal_sekolah + '</b></a><hr>'
         });

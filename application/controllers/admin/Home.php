@@ -58,10 +58,12 @@ class Home extends CI_Controller
     {
         $data = array(
             'indiefestKe' => $this->input->post('indiefestKe'),
+            'biayaIndiefest' => str_replace('.','',$this->input->post('biaya')),
             'bukaDaftar' => $this->input->post('buka'),
             'tutupDaftar' => $this->input->post('tutup'),
             'syaratketentuan' => $this->input->post('syaratketentuan')
         );
+
         $this->mdclp->updateData('settings',$data,array('id_settings' => $id));
         $this->session->set_flashdata('pesan','Pengaturan pendaftaran indiefest telah di perbaharui');
         redirect('admin/home/settings');
@@ -114,10 +116,15 @@ class Home extends CI_Controller
     public function konfimasicalonpeserta($id)
     {
         $dataPendaftar = $this->mdclp->getWhere('tb_registrasi',array('id_registrasi' => $id))->row();
+        
+        //MEMBUAT INVOICE PEMBAYARAN PENDAFTAR
+        $this->addInvoice($id);
+        //______
+        
         $data = array(
             'flg_konfirmasi' => 1
         );
-
+        $dataInvoice = $this->mdclp->getWhere('invoice',array('id_registrasi' => $id))->row();
         $toemail = $dataPendaftar->email;
         $subject = 'DATA FILM ANDA TELAH DI SETUJUI';
         $message = "
@@ -138,11 +145,11 @@ class Home extends CI_Controller
           A/n : Dono
         </p>
         <center>
-        <table style='boder:1px solid black;'>
+        <table style='border:1px solid black;'>
               <thead>
                 <tr>
                   <th scope='col'>#</th>
-                  <th scope='col'>Invoice</th>
+                  <th scope='col'>Code Invoice</th>
                   <th scope='col'>Perihal</th>
                   <th scope='col'>Biaya Pendaftaran</th>
                 </tr>
@@ -150,9 +157,9 @@ class Home extends CI_Controller
               <tbody>
                 <tr>
                   <th scope='row'>1</th>
-                  <td>CLP7878</td>
-                  <td>Pembayaran Indiefest</td>
-                  <td>Rp. 125.000</td>
+                  <td>".$dataInvoice->code_invoice."</td>
+                  <td>".$dataInvoice->perihal."</td>
+                  <td>".rupiah($dataInvoice->biaya)."</td>
                 </tr>
               </tbody>
         </table>
@@ -179,6 +186,120 @@ class Home extends CI_Controller
         $this->mdclp->updateData('tb_registrasi',$data,array('id_registrasi' => $id));
         $this->session->set_flashdata('pesan','Konfirmasi telah berhasil');
         redirect('admin/home/CalonPesertaClp');
+    }
+
+    public function addInvoice($id_registrasi)
+	{
+		$biaya = $this->mclp->getData('settings','id_settings')->row();
+
+		$data = array(
+            //'id_invoice' => null,
+            'id_registrasi' => $id_registrasi,
+			'code_invoice' => $this->genereCodeInvoice(),
+			'biaya' => $biaya->biayaIndiefest,
+            'perihal' => 'Pembayaran pendaftaran Indiefest',
+            //'bukti_pembayaran' => null,
+            'status' => 0,//BELUM DIKONFIRMASI PEMBAYARAN
+            //'tanggal_upload_bukti' => null,
+            //'tanggal_valid' => null
+        );
+        $this->mdclp->inputdata('invoice',$data);
+        return true;
+	}
+
+	public function genereCodeInvoice()
+	{
+        $code = '';
+        //CODE UNIK
+        $hash = base_convert(microtime(false), 10, 9);
+        $hash = strtoupper(substr($hash,0,6));
+		$code = 'CLP'.$hash;
+        return $code;
+    }
+
+    public function getBuktiPembayaran()
+    {
+        $id_registrasi = $this->uri->segment(4);
+        if (!$id_registrasi) {
+            echo "not this";
+            return;
+        }
+        $data = $this->mdclp->getWhere('invoice',array('id_registrasi' => $id_registrasi));
+
+        if ($data->num_rows() == 0) {
+            echo json_encode(array('data' => 'not found'));
+        }else{
+            echo json_encode(array('data' => $data->row()));
+        }
+    }
+
+    public function konfimasipembayaran()
+    {
+        $id_registrasi = $this->uri->segment(4);
+        if (!$id_registrasi) {
+            echo 'not this';
+            return;
+        }
+
+        $where = array('id_registrasi' => $id_registrasi);
+        $up = $this->mdclp->updateData('tb_registrasi',array('status_pembayaran' => 1),$where);
+        if ($up) {
+             $dataInvoice = $this->mdclp->getWhere('invoice',array('id_registrasi' => $id_registrasi))->row();
+            $dataPendaftar = $this->mdclp->getWhere('tb_registrasi',array('id_registrasi' => $id_registrasi))->row();
+            $toemail = $dataPendaftar->email;
+            $subject = 'PEMBAYARAN ANDA TELAH DIKONFIRMASI';
+            $message = "
+            <div style='padding:2%;background-color:white;'>
+            <center><img src='".base_url('/assets/frontend/img/logoclp.png')."' margin-left:2%;></center>
+            </div>
+            <br>
+            <center><h2 style='font-family: arial;'>PEMBAYARAN ANDA TELAH DIKONFIRMASI</h2></center>
+
+            <p style='font-family: verdana'>
+                Hallo <b>".$dataPendaftar->nama_perwakilan." (".$dataPendaftar->asal_sekolah.")</b> pembayaran dengan invoice dibawah telah kami konfirmasi <br>
+            </p></center>
+            <center>
+            <table style='border:1px solid black;'>
+                <thead>
+                    <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Code Invoice</th>
+                    <th scope='col'>Perihal</th>
+                    <th scope='col'>Biaya Pendaftaran</th>
+                    <th scope='col'>Status Pembayaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope='row'>1</th>
+                    <td>".$dataInvoice->code_invoice."</td>
+                    <td>".$dataInvoice->perihal."</td>
+                    <td>".rupiah($dataInvoice->biaya)."</td>
+                    <td><b style='color:green'>terkonfirmasi</b></td>
+                    </tr>
+                </tbody>
+            </table>
+            </center>   
+                <br>
+                <p>
+                    Untuk info lebih lanjut silahkan hubungi nomor Admin 08998779734(Whatsapp chat only).<br>
+                    Terima kasih, selamat berkompetisi :).
+                </p>
+            <br>
+            <i>regards,</i>
+            <p><b>Club Lobi Pilm</b></p>
+            <br>
+            <div style='background-color: #e4e4e4; padding: 10px; font-family: verdana;'>
+                <center>
+                    <p>@".date('Y')." Club Lobi Pilm - Universitas Pakuan</p>
+                </center>
+            </div>
+            ";
+            $this->sendEmail($toemail,$subject,$message);
+            redirect('admin/home/CalonPesertaClp');
+        }else{
+            echo "GAGAL, KEMBALI DAN LAKUKAN LAGI";
+        }
     }
 
     public function sendEmail($toemail,$subject,$msg)

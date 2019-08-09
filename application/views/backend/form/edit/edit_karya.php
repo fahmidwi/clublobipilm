@@ -27,6 +27,7 @@
                 <hr>
                 <form method="POST" action="<?php echo base_url('admin/Karya/ProsesUbahData/'.$karya->id_karya) ?>"
                   enctype="multipart/form-data">
+                  <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">

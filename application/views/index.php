@@ -6,7 +6,7 @@
 <?php $this->load->view('include/headerindex.php'); ?>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-<?php $this->load->view('include/slideshow.php'); ?>
+  <?php $this->load->view('include/slideshow.php'); ?>
   <!-- Section: tentangkami -->
   <section id="tentangkami" class="home-section color-dark bg-white">
     <div class="container marginbot-50" style="margin-top: -8%;">
@@ -224,6 +224,8 @@
           <?php echo ($this->session->flashdata('pesan')) ? '<i class="mdi mdi-check"></i><div style="color:blue">'.$this->session->flashdata('pesan').'</div>' : null ; ?>
           <div id="errormessage"></div>
           <form action="<?php echo base_url('home/hubkami') ?>" method="post" role="form" class="contactForm">
+            <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+              value="<?=$this->security->get_csrf_hash();?>" style="display: none">
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">

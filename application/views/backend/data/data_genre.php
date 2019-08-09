@@ -69,6 +69,8 @@
                       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                     </div>
                     <form method="post" action="<?php echo base_url('admin/Genre/ProsesTambah/'); ?>">
+                      <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                        value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                       <div class="modal-body">
                         <div class="row">
                           <div class="col-md-12">
@@ -99,6 +101,8 @@
                       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                     </div>
                     <form method="post" action="<?php echo base_url('admin/Genre/ProsesUbahData/'.$res->id_genre); ?>">
+                      <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                        value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                       <div class="modal-body">
                         <div class="row">
                           <div class="col-md-12">

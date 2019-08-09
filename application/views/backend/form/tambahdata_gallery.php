@@ -27,12 +27,14 @@
                 <hr>
                 <form method="POST" action="<?php echo base_url('admin/Gallery/prosesTambahData') ?>"
                   enctype="multipart/form-data">
+                  <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                    value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                   <div class="row">
                     <div class="col-md-6">
                       <label for="example-text-input" class="col-form-label">Program kerja</label>
                       <select name="proker" class="form-control"><br>
                         <?php foreach ($proker as $res) { ?>
-                            <option value="<?php echo $res->id_proker ?>"><?php echo $res->judul; ?></option>
+                        <option value="<?php echo $res->id_proker ?>"><?php echo $res->judul; ?></option>
                         <?php } ?>
                       </select>
                     </div>

@@ -27,6 +27,7 @@
                 <blockquote>PENDAFTARAN KEANGGOTAAN</blockquote>
               </h3>
               <form method="POST" action="<?php echo base_url('pendaftaran/submitDaftar')?>" enctype="multipart/form-data">
+              <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nama Lengkap</label>
                   <input type="text" class="form-control" placeholder="Masukan Nama Lengkap" name="nama" required>
@@ -55,18 +56,18 @@
                   <div class="col-lg-6">
                     <label for="exampleInputEmail1">Password</label>
                     <div class="input-group">
-                      <input type="Password" id="password1" class="form-control" placeholder="Masukan Password" name="password" required>
+                      <input type="password" id="password1" class="form-control password" placeholder="Masukan Password" name="password" required>
                       <span class="input-group-btn">
-                        <button class="btn"  type="button"><span class="glyphicon glyphicon-eye-open"></span></button>
+                        <button class="btn showpassword" type="button" data="true"><span class="glyphicon glyphicon-eye-open"></span></button>
                       </span>
                     </div><!-- /input-group -->
                   </div><!-- /.col-lg-6 -->
                   <div class="col-lg-6">
                     <label for="exampleInputEmail1">Konfirmasi Password</label>
                     <div class="input-group">
-                      <input type="Password" id="password2" class="form-control" placeholder="Konfirmasi Password" name="password" onchange="cekpass()" required>
+                      <input type="password" id="password2" class="form-control password" placeholder="Konfirmasi Password" name="password" onchange="cekpass()" required>
                       <span class="input-group-btn">
-                        <button class="btn" type="button"><span class="glyphicon glyphicon-eye-open"></span></button>
+                        <button class="btn showpassword" type="button" data="true"><span class="glyphicon glyphicon-eye-open"></span></button>
                       </span>
                     </div><!-- /input-group -->
                   </div><!-- /.col-lg-6 -->
@@ -81,11 +82,13 @@
                     <input type="Password" id="password2" class="form-control" placeholder="Konfirmasi Password" name="password" onchange="cekpass()" required>
                   </div>
                 </div> -->
+                <br>
                 <div class="form-group">
                   <label>Angkatan clp</label>
                   <select class="form-control" name="angkatan">
                     <?php 
-                for ($angkatan=1; $angkatan <= 10; $angkatan++) { ?>
+                $tahun = date('Y');
+                for ($angkatan=2010; $angkatan <= $tahun; $angkatan++) { ?>
                     <option value="<?php echo $angkatan; ?>">Angkatan <?php echo $angkatan; ?></option>
                     <?php } ?>
                   </select>
@@ -122,6 +125,17 @@ $(document).ready(function(){
   
   const base_url = '<?php echo base_url(); ?>'
   
+  $('.showpassword').click(function() {
+    var data = $(this).attr('data')
+    if (data=='true') {
+      $(this).attr('data','false')
+      $('.password').attr('type','text')
+    }else{
+      $(this).attr('data','true')
+      $('.password').attr('type','password')
+    }
+  })
+
   $('#npm').on('change',function () {
     const npm = $(this).val();
     checkNpm(npm);

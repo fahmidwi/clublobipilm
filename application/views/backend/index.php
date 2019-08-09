@@ -2,8 +2,8 @@
 <html class="no-js" lang="en">
 
 <?php $this->load->view('include/head_backend'); ?>
-
 <body>
+<div id="snackbar">Ada pendaftar baru</div>
   <div id="preloader">
     <div class="loader"></div>
   </div>
@@ -76,5 +76,4 @@
 
 </body>
 <?php $this->load->view('include/js_backend'); ?>
-
 </html>

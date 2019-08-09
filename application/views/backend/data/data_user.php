@@ -24,7 +24,6 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="header-title">Data User</h4>
-                <a href="<?php echo base_url('admin/home/tambahdata_user') ?>" class="badge badge-info">Tambah Data</a>
                 <br><br>
                 <div class="data-tables datatable-dark">
                   <table id="dataTable3" class="text-center">

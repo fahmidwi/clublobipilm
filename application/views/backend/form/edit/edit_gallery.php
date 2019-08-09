@@ -25,17 +25,20 @@
               <div class="card-body">
                 <h4 class="header-title">Form Edit Slideshow</h4>
                 <hr>
-                <form method="POST" action="<?php echo base_url('admin/Gallery/ProsesUbahData/'.$gallery->id_gallery) ?>"
+                <form method="POST"
+                  action="<?php echo base_url('admin/Gallery/ProsesUbahData/'.$gallery->id_gallery) ?>"
                   enctype="multipart/form-data">
+                  <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                    value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                   <div class="row">
                     <div class="col-md-6">
                       <label for="example-text-input" class="col-form-label">Program kerja</label>
                       <select name="proker" class="form-control"><br>
                         <?php foreach ($proker as $res) { ?>
                         <?php if ($res->id_proker == $gallery->id_proker) { ?>
-                          <option value="<?php echo $res->id_proker ?>" selected><?php echo $res->judul; ?></option>
+                        <option value="<?php echo $res->id_proker ?>" selected><?php echo $res->judul; ?></option>
                         <?php } else { ?>
-                          <option value="<?php echo $res->id_proker ?>"><?php echo $res->judul; ?></option>
+                        <option value="<?php echo $res->id_proker ?>"><?php echo $res->judul; ?></option>
                         <?php } ?>
                         <?php } ?>
                       </select>

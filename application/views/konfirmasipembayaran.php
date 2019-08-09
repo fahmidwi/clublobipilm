@@ -26,82 +26,112 @@
               <h3 style="font-family: lato; font-weight:bold;">
                 <blockquote>KONFIRMASI PEMBAYARAN</blockquote>
               </h3>
-              <div class="alert alert-warning">
+              <div class="alert alert-warning" id="not_found" style="display:none;">
                 <strong>PERINGATAN!</strong> Invoice kamu tidak terdata di database kami.
               </div>
-              <div class="alert alert-success">
-                <strong>SELAMAT!</strong> Konfirmasi pembayaran kamu berhasil. Silahkan tunggu kami akan memberi konfirmasi lewat E-mail (kotak masuk/spam).
+              <?php if ($this->session->flashdata('confirm_success')) { ?>
+              <div class="alert alert-success" id="confirm_success">
+                <?php echo $this->session->flashdata('confirm_success'); ?>
               </div>
-              <form method="POST" action="<?php echo base_url('pendaftaran/submitDaftar')?>" enctype="multipart/form-data">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Invoice</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Masukan Invoice Kamu">
-                    <span class="input-group-btn">
-                      <button class="btn" type="button">Cari</button>
-                    </span>
-                  </div>
+              <?php } ?>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Cari Invoice Kamu</label>
+                <div class="input-group">
+                  <input type="text" id="code_invoice" class="form-control" placeholder="Masukan Code Invoice Kamu">
+                  <span class="input-group-btn">
+                    <button class="btn" type="button" id="seacrh" style="color:black;">Cari</button>
+                  </span>
                 </div>
-                
+              </div>
+              <center>
+                <i class="fa fa-spinner fa-spin" id="loading" aria-hidden="true"
+                  style="font-size:55pt;display:none;"></i>
+              </center>
+              <div id="dataInvoice" style="display:none;">
                 <div class="col-md-12" style="background-color: #999;">
-                  <center><p style="margin-top: 4%; color: #fff;">Data Film Kamu</p></center>
-                </div><br><br><br>
+                  <center>
+                    <p style="margin-top: 4%; color: #fff;">Data Film Kamu</p>
+                  </center>
+                </div><br><br><br><br>
                 <div class="col-md-6">
                   <div class="row">
-                      <a class="thumbnail">
-                        <img src="<?php echo base_url('assets/frontend/img/terimakasih.png') ?>" alt="...">
-                      </a>
+                    <a class="thumbnail" id="poster">
+                    </a>
                   </div>
                 </div>
                 <div class="col-md-6">
-                <ul >
+                  <ul>
                     <li>
-                      Nama Perwakilan : Dono
+                      Nama Perwakilan : <namaperwakilan></namaperwakilan>
                     </li>
                     <li>
-                      Sekolah : SMK ADI SANGGORO
+                      Sekolah : <sekolah></sekolah>
                     </li>
                     <li>
-                      Judul Film : Akhirnya aku paham
+                      Judul Film : <judulfilm></judulfilm>
                     </li>
                     <li>
-                      Genre : Horor
+                      Genre : <genre></genre>
                     </li>
                     <li>
-                      Tanggal Pendaftaran : 19 Januari 2019
+                      Tanggal Pendaftaran : <tglpendaftaran></tglpendaftaran>
                     </li>
-
                   </ul>
                 </div>
                 <div class="col-md-12">
+                  <h5>INVOICE KAMU</h5>
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <tr>
                         <th>#</th>
                         <th>Invoice</th>
+                        <th>Perihal</th>
                         <th>Biaya Pendaftaran</th>
                       </tr>
                       <tr>
-                        <td>1</td>
-                        <td>CLP7878</td>
-                        <td>Rp. 125.000</td>
+                        <td>
+                          <no></no>
+                        </td>
+                        <td>
+                          <codeinvoice></codeinvoice>
+                        </td>
+                        <td>
+                          <perihal></perihal>
+                        </td>
+                        <td>
+                          <biaya></biaya>
+                        </td>
                       </tr>
-                    </table><hr>
+                    </table>
+                    <hr>
                   </div>
                 </div>
-                <div class="col-md-12">
-                  <form>
+                <div class="col-md-12" id="done-up">
+                  <div class="alert alert-success" >
+                    <strong>INFO!</strong> Kamu sudah melakukan konfirmasi pembayaran . Silahkan tunggu kami akan
+                    memberi
+                    konfirmasi lewat E-mail (kotak masuk/spam).
+                  </div>
+                </div>
+                <form method="POST" id="form-up-bukti" action="<?php echo base_url("/home/uploadBuktiPembayaran") ?>"
+                  enctype="multipart/form-data">
+                  <div class="col-md-12">
+                    <h5>UPLOAD BUKTI PEMBAYARAN</h5>
                     <div class="form-group">
+                      <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                        value="<?=$this->security->get_csrf_hash();?>" style="display: none">
+                      <input type="hidden" name="idv" id="idv">
                       <label for="exampleFormControlFile1">File Bukti Pembayaran</label>
-                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                      <input type="file" name="file_bukti" class="form-control-file" id="exampleFormControlFile1">
                     </div>
-                  </form>
-                </div>
-                <div class="col-md-12">
-                <div style="margin-top: 4%;" class="g-recaptcha" data-sitekey="6LcjjKoUAAAAAP1ieU2BKCHqAB7puERah55AIbCn"></div><br>
-                <button type="submit" id="btn" class="btn btn-skin btn-lg btn-block">SUBMIT</button>
-                </div>
-              </form>
+                  </div>
+                  <div class="col-md-12">
+                    <div style="margin-top: 4%;" class="g-recaptcha"
+                      data-sitekey="6LcjjKoUAAAAAP1ieU2BKCHqAB7puERah55AIbCn"></div><br>
+                    <button type="submit" id="btn" class="btn btn-skin btn-lg btn-block">KIRIM</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -114,49 +144,69 @@
 
 </body>
 <script>
-  function cekpass(){
-    var pass2=document.getElementById('password2').value;
-    var pass1=document.getElementById('password1').value;
-    if(pass1!=pass2){
-      document.getElementById("btn").disabled = true;
-      document.getElementById("password2").style.border = "1px solid red";
-    }else{
-      document.getElementById("btn").disabled = false;
-      document.getElementById("password2").style.border = "1px solid green";
-    }
-  }
-</script>
-<script>
-$(document).ready(function(){
-  
+$(document).ready(function() {
+
   const base_url = '<?php echo base_url(); ?>'
-  
-  $('#npm').on('change',function () {
-    const npm = $(this).val();
-    checkNpm(npm);
+
+  setTimeout(() => {
+    $('#confirm_success').hide();
+  }, 5000);
+
+  $('#seacrh').click(function() {
+    $('#dataInvoice').hide();
+    const code_invoice = $('#code_invoice').val();
+    if (!code_invoice) {
+      return;
+    }
+    checkInvoice(code_invoice);
   });
 
-  function checkNpm(npm){
+  function checkInvoice(code_invoice) {
     $.ajax({
-      type:'GET',
-      url:base_url+'/pendaftaran/checkNpm/'+npm,
-      dataType:'JSON',
-      beforeSend:function() {
-        console.log('mengirim')
+      type: 'GET',
+      url: base_url + '/home/checkInvoice/' + code_invoice,
+      dataType: 'JSON',
+      beforeSend: function() {
+        $('#seacrh').prop('disabled', true);
+        $('#loading').show();
       },
-      success:function (res) {
-        if (res.res == 1) {
-          $('#alert-npm').show()
+      success: function(res) {
+        $('#seacrh').prop('disabled', false);
+        $('#loading').hide()
+        if (res.not_found) {
+          console.log('GADA')
+          $('#not_found').show()
         }
-      },
-      error:function (a,b,c) {
-        console.log(a)
-        console.log(b)
-        console.log(c)
+        if (res.found) {
+          $('#form-up-bukti').show()
+          $('#done-up').hide()
+          if (res.dataInvoice.status_bukti != 0) {
+            console.log(res.dataInvoice.status_bukti)
+            $('#form-up-bukti').hide()
+            $('#done-up').show()
+          }
+          $('#not_found').hide()
+          $('#dataInvoice').show();
+          $('#idv').val(res.dataInvoice.id_invoice)
+
+          const poster = '<img src="' + base_url + 'assets/backend/img/poster_regis/' + res.dataInvoice
+            .poster + '" alt="..." width="150" height="250">'
+          $('#poster').html(poster)
+
+          $('namaperwakilan').html(res.dataInvoice.nama_perwakilan)
+          $('sekolah').html(res.dataInvoice.asal_sekolah)
+          $('judulfilm').html(res.dataInvoice.judul_film)
+          $('genre').html(res.dataInvoice.genre)
+          $('tglpendaftaran').html(res.dataInvoice.tanggal_registrasi)
+          $('codeinvoice').html(res.dataInvoice.code_invoice)
+          $('perihal').html(res.dataInvoice.perihal)
+          $('biaya').html("Rp." + res.dataInvoice.biaya)
+        }
       }
     });
   }
 
 })
 </script>
+
 </html>

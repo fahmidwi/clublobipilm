@@ -44,23 +44,33 @@
                     <p>Pendaftaran ditutup : <?php echo changeDate($pengaturan->tutupDaftar); ?></p>
                   </div>
                   <div class="col-md-4">
+                    <p>Biaya pendaftaran indiefest : <?php echo rupiah($pengaturan->biayaIndiefest); ?></p>
+                  </div>
+                  <div class="col-md-4">
                     <p>Syarat & ketentuan : <a href="<?php echo base_url('syaratdanketentuan/indiefest'); ?>" target="_blank">Lihat disini</a></p>
                   </div>
                 </div><br>
                 <hr>
                 <b><p>Setting ulang Pendaftaran</p><b>
                 <form action="<?php echo base_url('admin/home/setpendaftaran/'.$pengaturan->id_settings) ?>" method="POST">
+                  <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="example-text-input" class="col-form-label">Pendaftaran di buka</label>
-                        <input name="buka" class="form-control" type="date" id="example-text-input" required>
+                        <input name="buka" class="form-control" type="date" id="example-text-input" value="<?php echo $pengaturan->bukaDaftar; ?>" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="example-text-input" class="col-form-label">Pendaftaran di tutup</label>
-                        <input name="tutup" class="form-control" type="date" id="example-text-input" required>
+                        <input name="tutup" class="form-control" type="date" id="example-text-input" value="<?php echo $pengaturan->tutupDaftar; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="example-text-input" class="col-form-label">Biaya pendaftaran indiefest</label>
+                        <input name="biaya" class="form-control uang" type="text" id="example-text-input" value="<?php echo $pengaturan->biayaIndiefest; ?>"  required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -81,6 +91,7 @@
                       <div class="form-group">
                         <label for="example-text-input" class="col-form-label">Syarat & ketentuan indiefest</label>
                         <textarea name="syaratketentuan">
+                          <?php echo $pengaturan->syaratketentuan; ?>
                         </textarea>
                       </div>
                     </div>
@@ -95,6 +106,7 @@
                   </div>
                   <div class="col-md-4">
                     <form action="<?php echo base_url('admin/home/setpopup/'.$pengaturan->id_settings) ?>" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                      <div class="form-group">
                         <label for="example-text-input" class="col-form-label">popup baru</label>
                         <input name="file" class="form-control" type="file" id="example-text-input" required>
@@ -120,13 +132,20 @@
 
 </body>
 <?php $this->load->view('include/js_backend'); ?>
+
 <script>
-CKEDITOR.replace( 'syaratketentuan', {
+
+$(document).ready(function(){
+  CKEDITOR.replace( 'syaratketentuan', {
     toolbar: [
         { name: 'document', items: ['NewPage', 'Preview', '-', 'Templates' ] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
         '/',                                          // Line break - next group will be placed in new line.
         { name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
     ]
 });
+// Format mata uang.
+$( '.uang' ).mask('000.000.000', {reverse: true});
+
+})
 </script>
 </html>

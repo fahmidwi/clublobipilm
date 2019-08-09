@@ -41,7 +41,7 @@
               TERDAFTAR. </h2>
             <img src="<?php echo base_url('assets/frontend/img/logoclp.png') ?>" width="35%" height="20%">
             <br><br>
-            <p style="font-size: 17pt;">Silahkan cek email anda pada kontak masuk/span.</p>
+            <p style="font-size: 17pt;">Silahkan cek email anda pada kontak masuk/spam.</p>
             <p style="font-size: 17pt;">Terima kasih atas kerja sama nya</p>
             <a href="<?php echo base_url('') ?>" class="btn btn-warning">Kembali ke halaman awal</a>
           </center>

@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('lib/frontend/css/css//magnific-popup.css');?>">
 <style type="text/css">
- .gallery * {
+.gallery * {
   padding: 1%;
 }
 
@@ -18,11 +18,11 @@
 }
 
 @media (min-width: 600px) and (max-width: 1099px) {
-    .gallery-images {
-      display: grid;
-      grid-gap: 30px 20px;
-      grid-template-columns: repeat(auto-fill,minmax(calc(50% - 20px), 1fr));
-      grid-auto-flow: dense;
+  .gallery-images {
+    display: grid;
+    grid-gap: 30px 20px;
+    grid-template-columns: repeat(auto-fill, minmax(calc(50% - 20px), 1fr));
+    grid-auto-flow: dense;
   }
 }
 
@@ -30,7 +30,7 @@
   .gallery-images {
     display: grid;
     grid-gap: 30px 20px;
-    grid-template-columns: repeat(auto-fill,minmax(calc(25% - 20px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(calc(25% - 20px), 1fr));
     grid-auto-flow: dense;
   }
 }
@@ -43,6 +43,7 @@
   position: relative;
   transform: scale(1, 1);
   transition: transform .125s ease;
+
   &:hover:not(.gallery-image__preview) {
     transform: scale(1.02, 1.02);
   }
@@ -96,11 +97,14 @@
   text-align: justify;
 }
 </style>
+
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   <!-- Section: about -->
-<section class="gallery">
-  <center><h2 class="gallery-title">Sesuai Proker</h2></center>
-        <!-- <div class="form-group">
+  <section class="gallery">
+    <center>
+      <h2 class="gallery-title"><?php echo $judul->judul; ?></h2>
+    </center>
+    <!-- <div class="form-group">
           <label></label>
           <select class="form-control" name="genre">
             <?php foreach ($genre as $res) { ?>
@@ -108,107 +112,25 @@
             <?php } ?>
           </select>
         </div> -->
-  <div class="gallery-images">
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image gallery-image--2x2 loaded">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="Ion accelerators play a strong role in magnetic fusion energy research." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="A system from CSAIL uses EEG brain signals to detect if a person notices robots making an error." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="This student, an Olympic medalist, is developing a device that more precisely measures the curvatures of the blades used for speedskates." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="MIT students have research interests that extend beyond the lab." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="MIT researchers have developed a new way to image proteins and RNA inside neurons of intact brain tissue." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="Recent faculty research topics in mechanical engineering include pattern formation, fluid dynamics, and soft condensed matter." src="https://images.unsplash.com/photo-1476535882942-632ab96c48aa?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=55560b5dbfe4a6edfc93f16ed1063197">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="A graduate student works on robotic systems that are tasked with removing items from bins and placing them into boxes." src="https://images.unsplash.com/photo-1481056447409-db8232bd2321?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=9ba82fa3c8aafa46e184a86824670c72">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image gallery-image--2x2 loaded">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="Ion accelerators play a strong role in magnetic fusion energy research." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="A system from CSAIL uses EEG brain signals to detect if a person notices robots making an error." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="This student, an Olympic medalist, is developing a device that more precisely measures the curvatures of the blades used for speedskates." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="MIT students have research interests that extend beyond the lab." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" src="<?php echo base_url('assets/frontend/img/indiefest.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image gallery-image--2x2 loaded">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="Ion accelerators play a strong role in magnetic fusion energy research." src="<?php echo base_url('assets/frontend/img/indiefest.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="A system from CSAIL uses EEG brain signals to detect if a person notices robots making an error." src="<?php echo base_url('assets/frontend/img/indiefest.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="This student, an Olympic medalist, is developing a device that more precisely measures the curvatures of the blades used for speedskates." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-    <figure class="gallery-image">
-      <div class="gallery-image__crop">
-        <img class="gallery-image__media" alt="MIT students have research interests that extend beyond the lab." src="<?php echo base_url('assets/frontend/img/poster_karya/1.jpg') ?>">
-      </div>
-    </figure>
-  </div>
-</section>
+    <div class="gallery-images">
+      <?php foreach ($gallery as $res) { ?>
+      <figure class="gallery-image" style="cursor:pointer;">
+        <div class="gallery-image__crop">
+          <img class="gallery-image__media" src="<?php echo base_url('assets/backend/img/gallery/'.$res->gambar) ?>">
+        </div>
+      </figure>
+      <?php } ?>
+    </div>
+  </section>
   <!-- /Section: about -->
   <!-- FOOTER -->
-<?php $this->load->view('include/footer.php'); ?>
+  <?php $this->load->view('include/footer.php'); ?>
   <script src="<?php echo base_url('lib/frontend/js/jquery.magnific-popup.min.js'); ?>"></script>
   <script src="<?php echo base_url('lib/frontend/js/main.js'); ?>"></script>
 
 </body>
 <script type="text/javascript">
-document.addEventListener('click', function (event) {
+document.addEventListener('click', function(event) {
   console.log(event.target.parentElement.parentElement);
   if (event.target.parentElement.parentElement.matches('.gallery-image__preview')) {
     event.target.parentElement.parentElement.classList.remove('gallery-image__preview');
@@ -219,12 +141,11 @@ document.addEventListener('click', function (event) {
     for (el of previewing) {
       el.classList.remove('gallery-image__preview');
     }
-        // Preview the clicked figure
+    // Preview the clicked figure
     event.target.parentElement.parentElement.classList.add('gallery-image__preview');
     event.target.parentElement.parentElement.scrollIntoView();
-    }
+  }
 }, false);
-
 </script>
 
 </html>
