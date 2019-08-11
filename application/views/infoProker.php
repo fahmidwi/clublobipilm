@@ -10,26 +10,26 @@
     <div class="container marginbot-50">
       <div class="row">
         <div class="col-lg-9">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading">
               <h3 style="font-family: lato; font-weight:bold;"><blockquote><?php echo strtoupper($infoproker->judul); ?></blockquote></h3>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
               <a href="#" class="thumbnail">
                 <img src="<?php echo base_url('assets/frontend/img/works/1.jpg') ?>" alt="...">
               </a>
-            </div>
-            <div class="col-md-9">
-              <p>
+            </div> -->
+            <div class="col-md-12">
+              <p style="text-align: justify;">
                 <?php echo $infoproker->program_kerja; ?>
               </p>
             </div>
           </div>
         </div>
         <div class="col-lg-3">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading">
               <h3 style="font-family: lato; font-weight:bold; font-size: 17pt;"><blockquote>Program Kerja</blockquote></h3>
             </div>

@@ -58,7 +58,8 @@
         </div>
         </form>
         <span class="badge wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s"><?php echo $tag_genre;  ?></span>
-        <span class="badge wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s"><?php echo $tag_tahun_upload;  ?></span>
+        <span class="badge wow fadeIn" data-wow-offset="0"
+          data-wow-delay="0.4s"><?php echo $tag_tahun_upload;  ?></span>
         <div class="row" style="margin-top: 2%;">
           <?php foreach ($karya as $res) { ?>
           <div class="col-sm-6 col-md-3 wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
@@ -87,12 +88,12 @@
           </div>
           <?php } ?>
         </div>
-          <nav aria-label="Page navigation example" style="float:right;">
-            <ul class="pagination">
-              <?php echo $prev; ?>
-              <?php echo $next; ?>
-            </ul>
-          </nav>
+        <nav aria-label="Page navigation example" style="float:right;">
+          <ul class="pagination">
+            <?php echo $prev; ?>
+            <?php echo $next; ?>
+          </ul>
+        </nav>
       </div>
     </div>
     </div>

@@ -1,11 +1,21 @@
 <!-- CSS -->
 <style type="text/css">
 @media screen and (max-width: 1600px) {
-  .img_hp {
-    display: none;
-  }
+.img_hp{
+   display:none;
 }
-
+}
+@media screen and (max-width: 600px) {
+.img_hp{
+  display:block;
+}
+.img_desktop{
+   display:none;    
+}
+a{
+  color:#fff !important;
+}
+}
 @media screen and (max-width: 600px) {
   .img_hp {
     display: block;
@@ -17,7 +27,6 @@
 
 }
 </style>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,15 +90,15 @@
         <div class="col-md-10">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu"><i
+            <button type="button" class="navbar-toggle" data-toggle="collapse" id="tabmenu" data-target="#menu"><i
                 class="fa fa-bars"></i></button>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav navbar-right" style="background-color: #101010; color: #fff;">
-              <li><a style="color: #fff;" href="#intro">Home</a></li>
-              <li><a style="color: #fff;" href="#tentangkami">Tentang Kami</a></li>
-              <li><a style="color: #fff;" href="#programkerja">Program Kerja</a></li>
+              <li><a style="color: #fff;" class="clickMenu" href="#intro">Home</a></li>
+              <li><a style="color: #fff;" class="clickMenu" href="#tentangkami">Tentang Kami</a></li>
+              <li><a style="color: #fff;" class="clickMenu" href="#programkerja">Program Kerja</a></li>
               <li class="dropdown">
                 <a class="dropdown-toggle" style="color: #fff;" data-toggle="dropdown" href="#">Gallery
                   <span class="caret"></span></a>
@@ -100,11 +109,11 @@
                   <?php } ?>
                 </ul>
               </li>
-              <li><a style="color: #fff;" href="#hasilkarya">Hasil karya</a></li>
-              <li><a style="color: #fff;" href="<?php echo base_url('home/keanggotaan') ?>">Keanggotaan</a></li>
-              <li><a style="color: #fff;" href="<?php echo base_url('home/pendaftaran') ?>" data-toggle="tooltip"
+              <li><a style="color: #fff;" class="clickMenu" href="#hasilkarya">Hasil karya</a></li>
+              <li><a style="color: #fff;" class="clickMenu" href="<?php echo base_url('home/keanggotaan') ?>">Keanggotaan</a></li>
+              <li><a style="color: #fff;" class="clickMenu" href="<?php echo base_url('home/pendaftaran') ?>" data-toggle="tooltip"
                   data-placement="bottom" title="Pendaftaran Indiefest">Pendaftaran</a></li>
-              <li><a style="color: #fff;" href="#hubkami">Hubungi Kami</a></li>
+              <li><a style="color: #fff;" class="clickMenu" href="#hubkami">Hubungi Kami</a></li>
             </ul>
           </div>
           <!-- /.Navbar-collapse -->
@@ -114,3 +123,5 @@
     <!-- /.container -->
   </nav>
 </div>
+</div>
+

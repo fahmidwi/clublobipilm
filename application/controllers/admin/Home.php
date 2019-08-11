@@ -165,7 +165,7 @@ class Home extends CI_Controller
         </table>
         </center>   
             <br>
-            <p>Jika sudah melakukan pembayaran silahkan konfirmasi pembayaran anda melalui <a href=".base_url('home/konfirmasipembayaran').">Halaman Konfirmasi</a>
+            <p>Jika sudah melakukan pembayaran silahkan konfirmasi pembayaran anda melalui <a href=".base_url('home/konfirmasipembayaran/'.$dataInvoice->token).">Halaman Konfirmasi</a>
             </p>
             <br>
             <p>
@@ -195,7 +195,8 @@ class Home extends CI_Controller
 		$data = array(
             //'id_invoice' => null,
             'id_registrasi' => $id_registrasi,
-			'code_invoice' => $this->genereCodeInvoice(),
+            'code_invoice' => $this->genereCodeInvoice(),
+            'token' => $this->genereToken(),
 			'biaya' => $biaya->biayaIndiefest,
             'perihal' => 'Pembayaran pendaftaran Indiefest',
             //'bukti_pembayaran' => null,
@@ -215,6 +216,13 @@ class Home extends CI_Controller
         $hash = strtoupper(substr($hash,0,6));
 		$code = 'CLP'.$hash;
         return $code;
+    }
+
+    public function genereToken()
+    {
+        $token = bin2hex(openssl_random_pseudo_bytes(64));
+        $subToken = substr($token,0,50);
+        return $token;
     }
 
     public function getBuktiPembayaran()
@@ -445,6 +453,20 @@ class Home extends CI_Controller
     {
         $data['detailanggota'] = $this->mdclp->getDetailAnggota($npm)->row();
         print_r($data['detailanggota']);
+    }
+
+    public function masukan()
+    {
+        if ($this->session->userdata('status_log')) {
+            $data['tab'] = '
+					<li><span>Masukan/pertanyaan</span></li>
+			';
+            $data['masukan'] = $this->mdclp->getData('tb_hubkami','id_hubkami')->result();
+            //print_r($data['user']);die();
+            $this->load->view('backend/data/data_masukan',$data);
+        } else {
+            redirect('admin/login', 'refresh');
+        }
     }
 
 }

@@ -15,7 +15,7 @@
       <ul class="notification-area pull-right">
         <li id="full-view"><i class="ti-fullscreen"></i></li>
         <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
-        <li class="dropdown">
+        <!-- <li class="dropdown">
           <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
             <span>2</span>
           </i>
@@ -73,7 +73,7 @@
               </a>
             </div>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

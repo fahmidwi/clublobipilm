@@ -56,7 +56,7 @@
         <div class="row">
           <?php foreach ($proker as $res) { ?>
           <div class="col-md-4" style="margin-top:2%;">
-            <div class="wow fadeInLeft" data-wow-delay="0.2s">
+            <div class="wow fadeIn" data-wow-delay="0.2s">
               <div class="service-box">
                 <div class="service-icon">
                 </div>
@@ -108,11 +108,11 @@
                 $uri = str_replace(" ","-",$judul);
               ?>
             <div class="col-md-12 bg-gray">
-              <a href="<?php echo base_url('home/db/'.$res->id_berita.'/'.$uri); ?>" style="color: #c0392b">
+              <a href="<?php echo base_url('home/db/'.$res->id_berita.'/'.$uri); ?>" style="color: #000">
                 <h6 style="margin-top: 3%;"><b><?php echo $res->judul_berita; ?></b></h6>
-                <div class="col-md-12" style="margin-top: -5%;">
-                  <i class="mdi mdi-calendar-text"></i><i><?php echo changeDate($res->create_date); ?></i>
-                  <p><?php  echo substr($res->isi_berita,0,100).'...'; ?></p>
+                <div class="col-md-12" style="margin-top: -5%;" style="color: #000;">
+                  <i class="mdi mdi-calendar-text" style="color: #000;"></i><i style="color: #000;"><?php echo changeDate($res->create_date); ?></i>
+                  <p style="color: #000;"><?php  echo substr($res->isi_berita,0,100).'...'; ?></p>
                 </div>
               </a>
             </div>
@@ -130,7 +130,7 @@
               <?php $no=1; foreach ($favberita as $res) { ?>
               <div class="item <?php if($no == 1){echo 'active';} ?> ?>">
                 <img src="<?php echo base_url('assets/frontend/img/berita/').$res->gambar;?>" alt="this slide">
-                <div class="header-text hidden-xs" style="margin-top:30%;">
+                <div class="header-text hidden-xs" style="margin-top:30%; background-color: black; opacity: 0.7;">
                   <div class="col-md-12">
                     <?php 
                       $judul = strtolower($res->judul_berita);

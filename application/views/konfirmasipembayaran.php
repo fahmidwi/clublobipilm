@@ -76,6 +76,7 @@
                     <li>
                       Tanggal Pendaftaran : <tglpendaftaran></tglpendaftaran>
                     </li>
+
                   </ul>
                 </div>
                 <div class="col-md-12">
@@ -108,9 +109,8 @@
                 </div>
                 <div class="col-md-12" id="done-up">
                   <div class="alert alert-success" >
-                    <strong>INFO!</strong> Kamu sudah melakukan konfirmasi pembayaran . Silahkan tunggu kami akan
-                    memberi
-                    konfirmasi lewat E-mail (kotak masuk/spam).
+                    <strong>INFO!</strong> Konfirmasi pembayaran kamu berhasil. Silahkan tunggu kami akan cek pembayaran anda dan memberi
+				konfirmasi lewat E-mail (kotak masuk/spam).
                   </div>
                 </div>
                 <form method="POST" id="form-up-bukti" action="<?php echo base_url("/home/uploadBuktiPembayaran") ?>"
@@ -121,6 +121,7 @@
                       <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
                         value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                       <input type="hidden" name="idv" id="idv">
+                      <input type="hidden" name="token" value="<?php echo $token; ?>">
                       <label for="exampleFormControlFile1">File Bukti Pembayaran</label>
                       <input type="file" name="file_bukti" class="form-control-file" id="exampleFormControlFile1">
                     </div>
@@ -150,7 +151,7 @@ $(document).ready(function() {
 
   setTimeout(() => {
     $('#confirm_success').hide();
-  }, 5000);
+  }, 10000);
 
   $('#seacrh').click(function() {
     $('#dataInvoice').hide();

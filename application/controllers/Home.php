@@ -231,21 +231,22 @@ class Home extends CI_Controller {
 															 ->get()
 															 ->result();
 		$data['settings'] = $this->mclp->getData('settings','id_settings')->row();
-		// if ($data['settings']->bukaDaftar == date('Y-m-d')) {
-		// 	echo "Ya buka";
-		// } else if($data['settings']->tutupDaftar == '2019-07-10'){
-		// 	echo "Tutup";
-		// }
-		//die();
-		$data['genre'] = $this->mclp->getData('tb_genre','id_genre')->result();
+		if (date('Y-m-d') >= $data['settings']->tutupDaftar) {
+			$data['genre'] = $this->mclp->getData('tb_genre','id_genre')->result();
+			$this->load->view('include/pendaftaranclose',$data);
+		} else if(date('Y-m-d' >= $data['settings']->bukaDaftar)){
+			$data['genre'] = $this->mclp->getData('tb_genre','id_genre')->result();
 		
-		$where = array(
-			'flg_konfirmasi' => 1,
-			'indiefestKe' => $data['settings']->indiefestKe
-		);
-		
-		$data['terdaftar'] = $this->mclp->getWhere('tb_registrasi',$where)->result();
-		$this->load->view('pendaftaran',$data);
+			$where = array(
+				'flg_konfirmasi' => 1,
+				'indiefestKe' => $data['settings']->indiefestKe
+			);
+			
+			$data['terdaftar'] = $this->mclp->getWhere('tb_registrasi',$where)->result();
+			$this->load->view('pendaftaran',$data);
+		}else{
+			echo "leuwih";
+		}		
 	}
 
 	public function prosesPedaftaran()
@@ -277,7 +278,7 @@ class Home extends CI_Controller {
 					'asal_sekolah' => strtoupper($this->input->post('asal_sekolah')),
 					'email' => $this->input->post('email'),
 					'judul_film' => $this->input->post('judul_film'),
-					'durasi' => $this->input->post('durasi'),
+					'durasi' => $this->input->post('menit').":".$this->input->post('detik'),
 					'sinopsis' => $this->input->post('editor1'),
 					'crew' => $this->input->post('editor2'),
 					'poster' => $config['file_name'],
@@ -330,6 +331,7 @@ class Home extends CI_Controller {
     }else{
       redirect('home/pendaftaran');
     }
+		//$this->load->view('terimakasih.php');
 	}
 	public function gallery()
 	{
@@ -422,9 +424,9 @@ class Home extends CI_Controller {
 				);
 
 				$this->mclp->updateData('invoice',$data,array('id_invoice' => $this->input->post('idv')));
-				$this->session->set_flashdata('confirm_success',' <strong>SELAMAT!</strong> Konfirmasi pembayaran kamu berhasil. Silahkan tunggu kami akan memberi
+				$this->session->set_flashdata('confirm_success',' <strong>SELAMAT!</strong> Konfirmasi pembayaran kamu berhasil. Silahkan tunggu kami akan cek pembayaran anda dan memberi
 				konfirmasi lewat E-mail (kotak masuk/spam).');
-				redirect(base_url('home/konfirmasipembayaran'),'refresh');
+				redirect(base_url('home/konfirmasipembayaran/'.$this->input->post('token')),'refresh');
 			}else{
 				echo json_encode(array('msg' => 'gagal upload'));
 				die();
@@ -438,11 +440,18 @@ class Home extends CI_Controller {
 
 	public function konfirmasipembayaran()
 	{
-		$data['proker'] = $this->db->select('id_proker,judul')
-															 ->from('tb_proker')
-															 ->order_by('id_proker','DESC')
-															 ->get()
-															 ->result();
-		$this->load->view('konfirmasipembayaran',$data);
+		$token = $this->uri->segment(3);
+		$cek = $this->mclp->getWhere('invoice',array('token' => $token))->num_rows();
+		if ($cek == 1) {
+			$data['proker'] = $this->db->select('id_proker,judul')
+																	->from('tb_proker')
+																	->order_by('id_proker','DESC')
+																	->get()
+																	->result();
+			$data['token'] = $token;
+			$this->load->view('konfirmasipembayaran',$data);
+		}else{
+			echo "token not registered";
+		}
 	}
 }

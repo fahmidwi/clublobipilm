@@ -87,7 +87,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label for="example-text-input" class="col-form-label">Syarat & ketentuan indiefest</label>
                         <textarea name="syaratketentuan">
@@ -97,7 +97,8 @@
                     </div>
                   </div>
                   <button type="submit" class="btn btn-success btn-block" onclick="return confirm('Ubah ulang settingan pendaftaran?')">Simpan</button>
-                </form><hr>
+                </form>
+                <!-- <hr>
                 <br><br><h5  class="header-title">Pengaturan Pop awal website</h5><hr>
                 <b><p>pop saat ini</p><b><br>
                 <div class="row">
@@ -114,7 +115,7 @@
                       <button type="submit" class="btn btn-success btn-block" onclick="return confirm('ganti pop up?')">Simpan</button>
                     </form>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -136,13 +137,7 @@
 <script>
 
 $(document).ready(function(){
-  CKEDITOR.replace( 'syaratketentuan', {
-    toolbar: [
-        { name: 'document', items: ['NewPage', 'Preview', '-', 'Templates' ] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
-        '/',                                          // Line break - next group will be placed in new line.
-        { name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
-    ]
-});
+  CKEDITOR.replace( 'syaratketentuan');
 // Format mata uang.
 $( '.uang' ).mask('000.000.000', {reverse: true});
 

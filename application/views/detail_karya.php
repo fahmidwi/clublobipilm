@@ -10,7 +10,7 @@
     <div class="container marginbot-50">
       <div class="row">
         <div class="col-lg-12">
-          <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+          <div class="wow fadeIn" data-wow-offset="0" data-wow-delay="0.4s">
             <div class="section-heading">
               <h3 style="font-family: lato; font-weight:bold;"><blockquote><?php echo $dk->judul_film;?></blockquote></h3>
             </div>

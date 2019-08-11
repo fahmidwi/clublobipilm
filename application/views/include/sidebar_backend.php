@@ -59,6 +59,10 @@
             <a href="<?php echo base_url('admin/home/user') ?>" aria-expanded="true"><i
                 class="ti-face-smile"></i><span>User</span></a>
           </li>
+          <li>
+            <a href="<?php echo base_url('admin/home/masukan') ?>" aria-expanded="true"><i
+                class="ti-face-message"></i><span>Masukan/Pertanyaan</span></a>
+          </li>
           <?php } ?>
 
           <li>

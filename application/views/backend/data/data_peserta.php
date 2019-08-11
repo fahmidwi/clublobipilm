@@ -8,6 +8,7 @@
     <div class="loader"></div>
   </div>
   <!-- preloader area end -->
+  <link rel="stylesheet" href="<?php echo base_url('lib/backend/css/jquery-ui.min.css') ?>">
   <!-- page container area start -->
   <div class="page-container">
     <?php $this->load->view('include/sidebar_backend') ?>
@@ -31,6 +32,18 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="header-title">Data Peserta</h4><br>
+                <a href="<?php echo base_url('admin/home/tambahdata_peserta') ?>" class="badge badge-info">Tambah
+                  Data</a>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="col-form-label"
+                      style="font-weight: bold; margin-top: 9%;">Cetak laporan per tahun</label>
+                    <select class="form-control">
+                      <option>Pilih tahun</option>
+                      <option>2019</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="data-tables datatable-dark">
                   <table id="dataTable3" class="text-center"><br>
                     <thead class="text-capitalize">
@@ -222,13 +235,19 @@ function getBukti(id_registrasi) {
     },
     success: function(res) {
       const pictPemb = document.getElementById("pictPemb" + id_registrasi);
+      if (res.data == 'not found') {
+        console.log('sdas')
+        document.getElementById("btnKonfir" + id_registrasi).style.visibility = "hidden";
+        pictPemb.innerHTML = "DATA FILM BELUM DIKONFIRMASI";
+        return;
+      }
 
       if (res.data.status_bukti != 0) {
         const img = '<img src="' + url + 'assets/backend/img/bukti_pembayaran/' + res.data.bukti_pembayaran +
           '"/>';
         pictPemb.innerHTML = img;
       } else {
-        pictPemb.innerHTML = '<h4>BELUM MELAKUKAN KONFIRMASI PEMBAYARAN</h4>'
+        pictPemb.innerHTML = 'BELUM MELAKUKAN KONFIRMASI PEMBAYARAN'
         document.getElementById("btnKonfir" + id_registrasi).style.visibility = "hidden";
       }
     }
